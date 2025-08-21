@@ -1,0 +1,14 @@
+Evaluation_LLM\RAG\RAG3.py
+Evaluation_LLM\RAG\RAG3_1.py
+Evaluation_LLM\RAG\seminar2.py
+Evaluation_LLM\RAG_tester\noragnoft.py
+Evaluation_LLM\RAG_tester\norag_c_ft.py
+Evaluation_LLM\RAG_tester\norag_ft.py
+Evaluation_LLM\RAG_tester\norag_noft_c.py
+Evaluation_LLM\RAG_tester\RAG3.py
+Evaluation_LLM\RAG_tester\rag_countries_ft.py
+Evaluation_LLM\RAG_tester\rag_c_noft.py
+Evaluation_LLM\RAG_tester\rag_ft.py
+Evaluation_LLM\RAG_tester\RAG_wo_ft.py
+Evaluation_LLM\RAG_tester\seminar2.py
+tokens_hits.txt

@@ -1,0 +1,42 @@
+
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+# Load data
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df["OC"] = pd.to_numeric(df["OC"], errors="coerce")
+df["N"] = pd.to_numeric(df["N"], errors="coerce")
+
+# Filter for valid OC, N, TH_LONG, TH_LAT
+df = df.dropna(subset=["OC", "N", "TH_LONG", "TH_LAT"])
+
+# Calculate carbon to nitrogen ratio
+df["C_N_Ratio"] = df["OC"] / df["N"]
+
+# Filter for C_N_Ratio > 10
+df = df[df["C_N_Ratio"] > 10]
+
+# Create GeoDataFrame
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["TH_LONG"], df["TH_LAT"]), crs="EPSG:4326")
+
+# Load Europe shapefile
+europe = gpd.read_file("europe.gpkg").to_crs("EPSG:4326")
+
+# Load countries shapefile
+world = gpd.read_file("../natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+
+# Plot
+fig, ax = plt.subplots(figsize=(10, 10))
+europe.plot(ax=ax, color="lightgrey", edgecolor="black")
+world.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, color="red", markersize=1, label="C:N > 10")
+
+# Zoom to bounds of points
+ax.set_xlim(gdf.total_bounds[0] - 1, gdf.total_bounds[2] + 1)
+ax.set_ylim(gdf.total_bounds[1] - 1, gdf.total_bounds[3] + 1)
+
+plt.title("Carbon to Nitrogen Ratio > 10 in Europe")
+plt.legend()
+plt.tight_layout()
+plt.savefig('plots/plot29.png')

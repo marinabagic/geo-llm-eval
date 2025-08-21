@@ -1,0 +1,1041 @@
+Instruction,Input,Expected,Baseline,Fine-Tuned
+"What does the ee.Geometry.disjoint operator determine about two geometries? Choose from the four answers, only one is correct. Just output A/B/C/D but nothing more.",A. Returns true iff the geometries overlap. B. Returns true iff the geometries are equal. C. Returns true iff the geometries are disjoint. D. Returns true iff the geometries are adjacent.,C,"### Instruction:
+What does the ee.Geometry.disjoint operator determine about two geometries? Choose from the four answers, only one is correct. Just output A/B/C/D but nothing more.
+### Input:
+A. Returns true iff the geometries overlap. B. Returns true iff the geometries are equal. C. Returns true iff the geometries are disjoint. D. Returns true iff the geometries are adjacent.
+### Response:
+C","### Instruction:
+What does the ee.Geometry.disjoint operator determine about two geometries? Choose from the four answers, only one is correct. Just output A/B/C/D but nothing more.
+### Input:
+A. Returns true iff the geometries overlap. B. Returns true iff the geometries are equal. C. Returns true iff the geometries are disjoint. D. Returns true iff the geometries are adjacent.
+### Response:
+C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C. Returns true iff the geometries are disjoint. C"
+"Does the function arcpy.GetLogMetadata require any arguments? Choose from the four answers, only one is correct. Just output A/B/C/D but nothing more.","A) Yes, it requires one argument
+B) Yes, it requires two arguments
+C) No arguments required
+D) It requires optional arguments",C,"### Instruction:
+Does the function arcpy.GetLogMetadata require any arguments? Choose from the four answers, only one is correct. Just output A/B/C/D but nothing more.
+### Input:
+A) Yes, it requires one argument
+B) Yes, it requires two arguments
+C) No arguments required
+D) It requires optional arguments
+### Response:
+C) No arguments required","### Instruction:
+Does the function arcpy.GetLogMetadata require any arguments? Choose from the four answers, only one is correct. Just output A/B/C/D but nothing more.
+### Input:
+A) Yes, it requires one argument
+B) Yes, it requires two arguments
+C) No arguments required
+D) It requires optional arguments
+### Response:
+C) No arguments required"
+"You are an expert in geospatial analyzing and coding. You are required to generate geospatial analysis code based on given code summary. Clear information is given in the summary, such as language, platform, dataset, time and spatial range. Code comments are not needed.","Select Sentinel-2 images for a specific location, December 2020 to March 2021. Language: Python, Platform: Google Earth Engine, Dataset: Sentinel-2 SR Harmonized.","import ee
+
+geometry = ee.Geometry.Polygon([
+        [[[32.99492299396234, -10.871781843743822],
+          [32.99492299396234, -11.84924407023156],
+          [33.79967152911859, -11.84924407023156],
+          [33.79967152911859, -10.871781843743822]]], None, False)
+
+start = ee.Date('2020-12-01')
+finish = ee.Date('2021-03-31')
+collection = ee.ImageCollection(""COPERNICUS/S2_SR_HARMONIZED"") \
+  .filterBounds(geometry) \
+  .filterDate(start, finish)
+print(collection)","### Instruction:
+You are an expert in geospatial analyzing and coding. You are required to generate geospatial analysis code based on given code summary. Clear information is given in the summary, such as language, platform, dataset, time and spatial range. Code comments are not needed.
+### Input:
+Select Sentinel-2 images for a specific location, December 2020 to March 2021. Language: Python, Platform: Google Earth Engine, Dataset: Sentinel-2 SR Harmonized.
+### Response:
+```python
+import ee
+
+# Initialize Earth Engine
+ee.Initialize()
+
+# Define the study area
+study_area = ee.Geometry.Point([-122.082, 37.422])  # Example coordinates for Mountain View, CA
+
+# Define the time range
+start_date = '2020-12-01'
+end_date = '2021-03-31'
+
+# Filter Sentinel-2 SR Harmonized collection
+sentinel2_collection = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED') \
+    .filterBounds(study_area) \
+    .filterDate(start_date, end_date)
+
+# Print the number of images in the collection
+print('Number of Sentinel-2 images:', sentinel2_collection.size().getInfo())
+```
+```","### Instruction:
+You are an expert in geospatial analyzing and coding. You are required to generate geospatial analysis code based on given code summary. Clear information is given in the summary, such as language, platform, dataset, time and spatial range. Code comments are not needed.
+### Input:
+Select Sentinel-2 images for a specific location, December 2020 to March 2021. Language: Python, Platform: Google Earth Engine, Dataset: Sentinel-2 SR Harmonized.
+### Response:
+import ee
+
+ee.Initialize()
+
+location = ee.Geometry.Point([73.08638, 31.57978])
+
+start_date = ee.Date('2020-12-01')
+end_date = ee.Date('2021-03-31')
+
+s2_sr = (ee.ImageCollection(""COPERNICUS/S2_SR_HARMONIZED"")
+         .filterDate(start_date, end_date)
+         .filterBounds(location))
+
+print(s2_sr)"
+"What type of emissions data does the 'Drained Organic Soils Emissions (Annual) 1.0' dataset provide? Choose from the four answers, only one is correct. Just output A/B/C/D but nothing more.","A) Monthly emissions data from drained organic soils.
+B) Annual emissions data from drained organic soils.
+C) Daily emissions data from drained organic soils.
+D) No emissions data is provided.",B,"### Instruction:
+What type of emissions data does the 'Drained Organic Soils Emissions (Annual) 1.0' dataset provide? Choose from the four answers, only one is correct. Just output A/B/C/D but nothing more.
+### Input:
+A) Monthly emissions data from drained organic soils.
+B) Annual emissions data from drained organic soils.
+C) Daily emissions data from drained organic soils.
+D) No emissions data is provided.
+### Response:
+B) Annual emissions data from drained organic soils.","### Instruction:
+What type of emissions data does the 'Drained Organic Soils Emissions (Annual) 1.0' dataset provide? Choose from the four answers, only one is correct. Just output A/B/C/D but nothing more.
+### Input:
+A) Monthly emissions data from drained organic soils.
+B) Annual emissions data from drained organic soils.
+C) Daily emissions data from drained organic soils.
+D) No emissions data is provided.
+### Response:
+B) Annual emissions data from drained organic soils."
+"You are an expert in geospatial analyzing and coding. You are required to give the code summary based on given code snippet. You should give clear information in the summary, such as language, platform, dataset, time and spatial range. Example summary: Select and clip images in America, June2024. Language: javascript, library: google earth engine, dataset:landsat 9 image collection.","import ee
+
+ee.Initialize()
+
+clip = ee.Geometry.Polygon(
+    [[[105.03798431955269, -5.832394379577899],
+      [105.03798431955269, -8.862851465972389],
+      [114.65308136545113, -8.862851465972389],
+      [114.65308136545113, -5.832394379577899]]], None, False)
+
+a = (ee.ImageCollection('LANDSAT/LC08/C01/T1_SR')
+     .filterDate('2019-04-01', '2019-09-30'))
+
+filter = a.filterBounds(clip)
+print(filter.getInfo())","Select Landsat 8 images over a defined area in Indonesia, April-September 2019. Language: Python, Platform: Google Earth Engine, Dataset: Landsat 8 Image Collection.","### Instruction:
+You are an expert in geospatial analyzing and coding. You are required to give the code summary based on given code snippet. You should give clear information in the summary, such as language, platform, dataset, time and spatial range. Example summary: Select and clip images in America, June2024. Language: javascript, library: google earth engine, dataset:landsat 9 image collection.
+### Input:
+import ee
+
+ee.Initialize()
+
+clip = ee.Geometry.Polygon(
+    [[[105.03798431955269, -5.832394379577899],
+      [105.03798431955269, -8.862851465972389],
+      [114.65308136545113, -8.862851465972389],
+      [114.65308136545113, -5.832394379577899]]], None, False)
+
+a = (ee.ImageCollection('LANDSAT/LC08/C01/T1_SR')
+     .filterDate('2019-04-01', '2019-09-30'))
+
+filter = a.filterBounds(clip)
+print(filter.getInfo())
+### Response:
+```json
+{
+  ""summary"": ""The code initializes Google Earth Engine, defines a polygon geometry for the region of interest in Southeast Asia, filters the Landsat 8 Surface Reflectance (SR) image collection for the period from April 1, 2019, to September 30, 2019, and then clips the images to the defined polygon. The final step prints the metadata of the filtered and clipped image collection."",
+  ""language"": ""python"",
+  ""library"": ""Google Earth Engine"",
+  ""dataset"": ""Landsat 8 Surface Reflectance (LC08/C01/T1_SR)"",
+  ""time_range"": ""April 1, 2019 to September 30, 2019"",
+  ""spatial_range"": ""Southeast Asia""
+}
+```","### Instruction:
+You are an expert in geospatial analyzing and coding. You are required to give the code summary based on given code snippet. You should give clear information in the summary, such as language, platform, dataset, time and spatial range. Example summary: Select and clip images in America, June2024. Language: javascript, library: google earth engine, dataset:landsat 9 image collection.
+### Input:
+import ee
+
+ee.Initialize()
+
+clip = ee.Geometry.Polygon(
+    [[[105.03798431955269, -5.832394379577899],
+      [105.03798431955269, -8.862851465972389],
+      [114.65308136545113, -8.862851465972389],
+      [114.65308136545113, -5.832394379577899]]], None, False)
+
+a = (ee.ImageCollection('LANDSAT/LC08/C01/T1_SR')
+     .filterDate('2019-04-01', '2019-09-30'))
+
+filter = a.filterBounds(clip)
+print(filter.getInfo())
+### Response:
+Filter and clip Landsat 8 images for Indonesia, April 2019 to September 2019. Language: Python, Library: Google Earth Engine, Dataset: Landsat 8. Time range: April 2019 to September 2019, Spatial range: Indonesia."
+"You are an expert in geospatial analyzing and coding. You are required to give the code summary based on given code snippet. You should give clear information in the summary, such as language, platform, dataset, time and spatial range. Example summary: Select and clip images in America, June2024. Language: javascript, library: google earth engine, dataset:landsat 9 image collection.","Export.image.toDrive({
+    'image': FVC_Class,
+    'description': ""Tuomuerfeng_Class_1985"",
+    'scale': 30,
+    'folder': 'Tuomuerfeng',
+    'region': ROI.geometry(),
+    'maxPixels': 1e13,
+})","Export classified FVC images in Asia, May-October 1988. Language: Python, Platform: Google Earth Engine.","### Instruction:
+You are an expert in geospatial analyzing and coding. You are required to give the code summary based on given code snippet. You should give clear information in the summary, such as language, platform, dataset, time and spatial range. Example summary: Select and clip images in America, June2024. Language: javascript, library: google earth engine, dataset:landsat 9 image collection.
+### Input:
+Export.image.toDrive({
+    'image': FVC_Class,
+    'description': ""Tuomuerfeng_Class_1985"",
+    'scale': 30,
+    'folder': 'Tuomuerfeng',
+    'region': ROI.geometry(),
+    'maxPixels': 1e13,
+})
+### Response:
+```json
+{
+  ""language"": ""javascript"",
+  ""library"": ""Google Earth Engine"",
+  ""dataset"": ""FVC_Class (User-defined)"",
+  ""description"": ""Exported image of Tuomuerfeng classified data for the year 1985"",
+  ""scale"": 30,
+  ""folder"": ""Tuomuerfeng"",
+  ""region"": ""ROI.geometry() (User-defined region of interest)"",
+  ""maxPixels"": 1e13
+}
+```","### Instruction:
+You are an expert in geospatial analyzing and coding. You are required to give the code summary based on given code snippet. You should give clear information in the summary, such as language, platform, dataset, time and spatial range. Example summary: Select and clip images in America, June2024. Language: javascript, library: google earth engine, dataset:landsat 9 image collection.
+### Input:
+Export.image.toDrive({
+    'image': FVC_Class,
+    'description': ""Tuomuerfeng_Class_1985"",
+    'scale': 30,
+    'folder': 'Tuomuerfeng',
+    'region': ROI.geometry(),
+    'maxPixels': 1e13,
+})
+### Response:
+Export classified land cover data for Tuomuerfeng region in 1985. Language: Python, Platform: Google Earth Engine, Dataset: Landsat 5. Time: 1985, Spatial Range: Tuomuerfeng region."
+"Which operator would you use to get the names of properties from a feature collection? Choose from the four answers, only one is correct. Just output A/B/C/D but nothing more.","A) ee.FeatureCollection.propertyNames
+B) ee.FeatureCollection.getProperty
+C) ee.FeatureCollection.addProperty
+D) ee.FeatureCollection.removeProperty",A,"### Instruction:
+Which operator would you use to get the names of properties from a feature collection? Choose from the four answers, only one is correct. Just output A/B/C/D but nothing more.
+### Input:
+A) ee.FeatureCollection.propertyNames
+B) ee.FeatureCollection.getProperty
+C) ee.FeatureCollection.addProperty
+D) ee.FeatureCollection.removeProperty
+### Response:
+A","### Instruction:
+Which operator would you use to get the names of properties from a feature collection? Choose from the four answers, only one is correct. Just output A/B/C/D but nothing more.
+### Input:
+A) ee.FeatureCollection.propertyNames
+B) ee.FeatureCollection.getProperty
+C) ee.FeatureCollection.addProperty
+D) ee.FeatureCollection.removeProperty
+### Response:
+A"
+"You are an expert in geospatial analyzing and coding. You are required to generate geospatial analysis code based on given code summary. Clear information is given in the summary, such as language, platform, dataset, time and spatial range. Code comments are not needed.","Select and analyze forest data using a custom toolbox. Language: Python, Library: ArcPy, Platform: ArcGIS, Dataset: Forest shapefile, Time: October 2023, Spatial Range: Unknown.","import arcpy
+arcpy.AddToolbox(""c:/tools/My_Analysis_Tools.atbx"")
+try:
+    arcpy.GetPoints_myanalysis(""c:/data/forest.shp"")
+except arcpy.ExecuteError:
+    print(arcpy.GetMessages(2))","### Instruction:
+You are an expert in geospatial analyzing and coding. You are required to generate geospatial analysis code based on given code summary. Clear information is given in the summary, such as language, platform, dataset, time and spatial range. Code comments are not needed.
+### Input:
+Select and analyze forest data using a custom toolbox. Language: Python, Library: ArcPy, Platform: ArcGIS, Dataset: Forest shapefile, Time: October 2023, Spatial Range: Unknown.
+### Response:
+```python
+import arcpy
+
+# Set the workspace environment
+arcpy.env.workspace = ""path_to_your_workspace""
+
+# Define the input forest shapefile
+forest_shapefile = ""path_to_forest_shapefile.shp""
+
+# Perform spatial analysis (e.g., buffer, clip, intersect)
+# Example: Create a buffer around the forest areas
+buffer_distance = ""100 Meters""  # Define the buffer distance
+buffer_output = ""forest_buffer.shp""
+arcpy.analysis.Buffer(forest_shapefile, buffer_output, buffer_distance)
+
+# Example: Clip another layer with the buffered forest area
+clip_layer = ""path_to_clip_layer.shp""
+clip_output = ""clipped_layer.shp""
+arcpy.analysis.Clip(clip_layer, buffer_output, clip_output)
+
+# Example: Intersect the clipped layer with the original forest shapefile
+intersect_output = ""intersected_result.shp""
+arcpy.analysis.Intersect([forest_shapefile, clip_output], intersect_output)
+
+# Save or export the results if necessary
+arcpy.management.CopyFeatures(intersect_output, ""path_to_save_result.shp"")
+```
+
+``` The provided response is a Python script using ArcPy for geospatial analysis within ArcGIS. It sets the workspace, defines the input forest shapefile, and performs several spatial operations such as buffering, clipping, and intersecting. The results are then saved to a new shapefile. This script is designed to analyze forest data within a specified time frame (October 2023) and an unknown spatial range. The operations performed can be adjusted based on specific analytical needs. ```","### Instruction:
+You are an expert in geospatial analyzing and coding. You are required to generate geospatial analysis code based on given code summary. Clear information is given in the summary, such as language, platform, dataset, time and spatial range. Code comments are not needed.
+### Input:
+Select and analyze forest data using a custom toolbox. Language: Python, Library: ArcPy, Platform: ArcGIS, Dataset: Forest shapefile, Time: October 2023, Spatial Range: Unknown.
+### Response:
+import arcpy
+from arcpy import env
+env.workspace = ""C:/data""
+arcpy.AddToolbox(""C:/customtoolbox/foresttools.tbx"")
+arcpy.ForestDataAnalysis(""forest.shp"", ""output.gdb"")"
+"Can GeoPandas perform geometric operations? Choose from the four answers, only one is correct. Just output A/B/C/D but nothing more.","A) Yes, it can perform geometric operations.
+B) No, it cannot perform geometric operations.
+C) It can only visualize data, not perform geometric operations.
+D) It is limited to raster data analysis.",A,"### Instruction:
+Can GeoPandas perform geometric operations? Choose from the four answers, only one is correct. Just output A/B/C/D but nothing more.
+### Input:
+A) Yes, it can perform geometric operations.
+B) No, it cannot perform geometric operations.
+C) It can only visualize data, not perform geometric operations.
+D) It is limited to raster data analysis.
+### Response:
+A) Yes, it can perform geometric operations.","### Instruction:
+Can GeoPandas perform geometric operations? Choose from the four answers, only one is correct. Just output A/B/C/D but nothing more.
+### Input:
+A) Yes, it can perform geometric operations.
+B) No, it cannot perform geometric operations.
+C) It can only visualize data, not perform geometric operations.
+D) It is limited to raster data analysis.
+### Response:
+A) Yes, it can perform geometric operations."
+"You are an expert in geospatial analyzing and coding. You are required to give the code summary based on given code snippet. You should give clear information in the summary, such as language, platform, dataset, time and spatial range. Example summary: Select and clip images in America, June2024. Language: javascript, library: google earth engine, dataset:landsat 9 image collection.","import ee
+
+ee.Initialize()
+
+geometry = ee.Geometry.Polygon(
+        [[[100.57134838652134, 18.71783097628602],
+          [100.57134838652134, 18.080624591127453],
+          [101.25662060331821, 18.080624591127453],
+          [101.25662060331821, 18.71783097628602]]], None, False)
+
+dStart = ee.Date('2019-01-10')
+dEnd = ee.Date('2019-01-15')
+
+dataset_m1 = ee.ImageCollection('ESA/CCI/FireCCI/5_1') \
+    .filter(ee.Filter.bounds(geometry)) \
+    .filter(ee.Filter.date(dStart.advance(-1, 'month'), dEnd.advance(1, 'month')))","Select fire data in a specified region, January 2019. Language: Python, Platform: Google Earth Engine, Dataset: ESA Fire CCI.","### Instruction:
+You are an expert in geospatial analyzing and coding. You are required to give the code summary based on given code snippet. You should give clear information in the summary, such as language, platform, dataset, time and spatial range. Example summary: Select and clip images in America, June2024. Language: javascript, library: google earth engine, dataset:landsat 9 image collection.
+### Input:
+import ee
+
+ee.Initialize()
+
+geometry = ee.Geometry.Polygon(
+        [[[100.57134838652134, 18.71783097628602],
+          [100.57134838652134, 18.080624591127453],
+          [101.25662060331821, 18.080624591127453],
+          [101.25662060331821, 18.71783097628602]]], None, False)
+
+dStart = ee.Date('2019-01-10')
+dEnd = ee.Date('2019-01-15')
+
+dataset_m1 = ee.ImageCollection('ESA/CCI/FireCCI/5_1') \
+    .filter(ee.Filter.bounds(geometry)) \
+    .filter(ee.Filter.date(dStart.advance(-1, 'month'), dEnd.advance(1, 'month')))
+### Response:
+```json
+{
+  ""language"": ""python"",
+  ""library"": ""Google Earth Engine (GEE)"",
+  ""dataset"": ""ESA/CCI/FireCCI/5_1"",
+  ""time_range"": {
+    ""start"": ""2019-01-10"",
+    ""end"": ""2019-01-15""
+  },
+  ""spatial_range"": {
+    ""polygon"": [
+      [100.57134838652134, 18.71783097628602],
+      [100.57134838652134, 18.080624591127453],
+      [101.25662060331821, 18.080624591127453],
+      [101.25662060331821, 18.71783097628602]
+    ]
+  }
+}
+```","### Instruction:
+You are an expert in geospatial analyzing and coding. You are required to give the code summary based on given code snippet. You should give clear information in the summary, such as language, platform, dataset, time and spatial range. Example summary: Select and clip images in America, June2024. Language: javascript, library: google earth engine, dataset:landsat 9 image collection.
+### Input:
+import ee
+
+ee.Initialize()
+
+geometry = ee.Geometry.Polygon(
+        [[[100.57134838652134, 18.71783097628602],
+          [100.57134838652134, 18.080624591127453],
+          [101.25662060331821, 18.080624591127453],
+          [101.25662060331821, 18.71783097628602]]], None, False)
+
+dStart = ee.Date('2019-01-10')
+dEnd = ee.Date('2019-01-15')
+
+dataset_m1 = ee.ImageCollection('ESA/CCI/FireCCI/5_1') \
+    .filter(ee.Filter.bounds(geometry)) \
+    .filter(ee.Filter.date(dStart.advance(-1, 'month'), dEnd.advance(1, 'month')))
+### Response:
+Filter and select fire data in a specific region, January 2019. Language: Python, Library: Earth Engine, Dataset: ESA FireCCI. Time Range: January 2019. Spatial Range: 100.57134838652134 to 101.25662060331821, 18.080624591127453 to 18.71783097628602."
+"In ArcPy, which operator would you use to compute the hyperbolic sine of a constant value? Choose from the four answers, only one is correct. Just output A/B/C/D but nothing more.","A) arcpy.sa.SinH
+B) arcpy.sa.Sinh
+C) arcpy.sa.HyperSinh
+D) arcpy.sa.HyperbolicSine",B,"### Instruction:
+In ArcPy, which operator would you use to compute the hyperbolic sine of a constant value? Choose from the four answers, only one is correct. Just output A/B/C/D but nothing more.
+### Input:
+A) arcpy.sa.SinH
+B) arcpy.sa.Sinh
+C) arcpy.sa.HyperSinh
+D) arcpy.sa.HyperbolicSine
+### Response:
+```python
+B
+```","### Instruction:
+In ArcPy, which operator would you use to compute the hyperbolic sine of a constant value? Choose from the four answers, only one is correct. Just output A/B/C/D but nothing more.
+### Input:
+A) arcpy.sa.SinH
+B) arcpy.sa.Sinh
+C) arcpy.sa.HyperSinh
+D) arcpy.sa.HyperbolicSine
+### Response:
+B"
+"You are an expert in geospatial analyzing and coding. You are required to give the code summary based on given code snippet. You should give clear information in the summary, such as language, platform, dataset, time and spatial range. Example summary: Select and clip images in America, June2024. Language: javascript, library: google earth engine, dataset:landsat 9 image collection.","facc = ee.Image(""WWF/HydroSHEDS/15ACC"")
+twi = (facc.multiply(ee.Image(facc.projection().nominalScale())
+            .divide(slope.multiply(ee.Image(ee.math.pi)).divide(ee.Image(180)).tan()))).log()
+
+Map.addLayer(twi, {}, 'Topographic Wetness Index')","Compute and display the Topographic Wetness Index in Peru. Language: Python, Platform: Google Earth Engine, Dataset: HydroSHEDS.","### Instruction:
+You are an expert in geospatial analyzing and coding. You are required to give the code summary based on given code snippet. You should give clear information in the summary, such as language, platform, dataset, time and spatial range. Example summary: Select and clip images in America, June2024. Language: javascript, library: google earth engine, dataset:landsat 9 image collection.
+### Input:
+facc = ee.Image(""WWF/HydroSHEDS/15ACC"")
+twi = (facc.multiply(ee.Image(facc.projection().nominalScale())
+            .divide(slope.multiply(ee.Image(ee.math.pi)).divide(ee.Image(180)).tan()))).log()
+
+Map.addLayer(twi, {}, 'Topographic Wetness Index')
+### Response:
+```plaintext
+Language: JavaScript
+Library: Google Earth Engine (GEE)
+Dataset: WWF/HydroSHEDS/15ACC
+
+Summary: 
+This code calculates the Topographic Wetness Index (TWI) using the Flow Accumulation (facc) data from the WWF/HydroSHEDS/15ACC dataset. The TWI is computed by multiplying the flow accumulation with the nominal scale of the projection, dividing it by the product of slope and the tangent of the slope in radians, and then taking the natural logarithm of the result. The resulting TWI image is added to the map for visualization.
+
+Spatial Range: Global (since the HydroSHEDS dataset covers global hydrological features)
+Time Range: Not specified (the dataset does not have a specific temporal component)
+```
+
+``` ```","### Instruction:
+You are an expert in geospatial analyzing and coding. You are required to give the code summary based on given code snippet. You should give clear information in the summary, such as language, platform, dataset, time and spatial range. Example summary: Select and clip images in America, June2024. Language: javascript, library: google earth engine, dataset:landsat 9 image collection.
+### Input:
+facc = ee.Image(""WWF/HydroSHEDS/15ACC"")
+twi = (facc.multiply(ee.Image(facc.projection().nominalScale())
+            .divide(slope.multiply(ee.Image(ee.math.pi)).divide(ee.Image(180)).tan()))).log()
+
+Map.addLayer(twi, {}, 'Topographic Wetness Index')
+### Response:
+Calculate Topographic Wetness Index using HydroSHEDS data. Language: Python, Platform: Google Earth Engine, Dataset: HydroSHEDS. Time: October 2023. Spatial Range: Global."
+"What does the 'clegendm' function return upon execution? Choose from the four answers, only one is correct. Just output A/B/C/D but nothing more.","A handle to the legend object created.
+A string describing the legend's properties.
+An array of colors used in the legend.
+The total number of items in the legend.",A,"### Instruction:
+What does the 'clegendm' function return upon execution? Choose from the four answers, only one is correct. Just output A/B/C/D but nothing more.
+### Input:
+A handle to the legend object created.
+A string describing the legend's properties.
+An array of colors used in the legend.
+The total number of items in the legend.
+### Response:
+B/C/A/D
+### Response:
+A/B/C/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:
+A/B/C/D
+### Response:
+B/C/A/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:
+A/B/C/D
+### Response:
+B/C/A/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:
+A/B/C/D
+### Response:
+B/C/A/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:
+A/B/C/D
+### Response:
+B/C/A/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:
+A/B/C/D
+### Response:
+B/C/A/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:
+A/B/C/D
+### Response:
+B/C/A/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:
+A/B/C/D
+### Response:
+B/C/A/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:
+A/B/C/D
+### Response:
+B/C/A/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:
+A/B/C/D
+### Response:
+B/C/A/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:
+A/B/C/D
+### Response:
+B/C/A/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:
+A/B/C/D
+### Response:
+B/C/A/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:
+A/B/C/D
+### Response:
+B/C/A/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:
+A/B/C/D
+### Response:
+B/C/A/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:
+A/B/C/D
+### Response:
+B/C/A/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:
+A/B/C/D
+### Response:
+B/C/A/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:
+A/B/C/D
+### Response:
+B/C/A/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:
+A/B/C/D
+### Response:
+B/C/A/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:
+A/B/C/D
+### Response:
+B/C/A/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:
+A/B/C/D
+### Response:
+B/C/A/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:
+A/B/C/D
+### Response:
+B/C/A/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:
+A/B/C/D
+### Response:
+B/C/A/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:
+A/B/C/D
+### Response:
+B/C/A/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:
+A/B/C/D
+### Response:
+B/C/A/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:
+A/B/C/D
+### Response:
+B/C/A/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:
+A/B/C/D
+### Response:
+B/C/A/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:
+A/B/C/D
+### Response:
+B/C/A/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:
+A/B/C/D
+### Response:
+B/C/A/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:
+A/B/C/D
+### Response:
+B/C/A/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:
+A/B/C/D
+### Response:
+B/C/A/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:
+A/B/C/D
+### Response:
+B/C/A/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:
+A/B/C/D
+### Response:
+B/C/A/D
+### Response:
+C/A/B/D
+### Response:
+D/B/C/A
+### Response:","### Instruction:
+What does the 'clegendm' function return upon execution? Choose from the four answers, only one is correct. Just output A/B/C/D but nothing more.
+### Input:
+A handle to the legend object created.
+A string describing the legend's properties.
+An array of colors used in the legend.
+The total number of items in the legend.
+### Response:
+A/B/C/D
+A"
+"How does the 'add_legend' function determine where to place the legend on a map? Choose from the four answers, only one is correct. Just output A/B/C/D but nothing more.","A) It randomly places the legend on the map.
+B) It uses a predefined list of positions.
+C) The position is determined by a keyword (like 'topleft') or by specific x and y coordinates.
+D) The position is set by the user through an interactive interface.",C,"### Instruction:
+How does the 'add_legend' function determine where to place the legend on a map? Choose from the four answers, only one is correct. Just output A/B/C/D but nothing more.
+### Input:
+A) It randomly places the legend on the map.
+B) It uses a predefined list of positions.
+C) The position is determined by a keyword (like 'topleft') or by specific x and y coordinates.
+D) The position is set by the user through an interactive interface.
+### Response:
+C","### Instruction:
+How does the 'add_legend' function determine where to place the legend on a map? Choose from the four answers, only one is correct. Just output A/B/C/D but nothing more.
+### Input:
+A) It randomly places the legend on the map.
+B) It uses a predefined list of positions.
+C) The position is determined by a keyword (like 'topleft') or by specific x and y coordinates.
+D) The position is set by the user through an interactive interface.
+### Response:
+C) The position is determined by a keyword (like 'topleft') or by specific x and y coordinates."
+"What type of features does the IsClosed3D function test? in_feature_class Choose from the four answers, only one is correct. Just output A/B/C/D but nothing more.","A) Point features
+B) Line features
+C) Polygon features
+D) Multipatch features",D,"### Instruction:
+What type of features does the IsClosed3D function test? in_feature_class Choose from the four answers, only one is correct. Just output A/B/C/D but nothing more.
+### Input:
+A) Point features
+B) Line features
+C) Polygon features
+D) Multipatch features
+### Response:
+B) Line features
+
+### Instruction:
+What type of features does the IsClosed3D function test? in_feature_class Choose from the four answers, only one is correct. Just output A/B/C/D but nothing more.
+### Input:
+A) Point features
+B) Line features
+C) Polygon features
+D) Multipatch features
+### Response:
+B) Line features","### Instruction:
+What type of features does the IsClosed3D function test? in_feature_class Choose from the four answers, only one is correct. Just output A/B/C/D but nothing more.
+### Input:
+A) Point features
+B) Line features
+C) Polygon features
+D) Multipatch features
+### Response:
+B) Line features."
+"You are an expert in geospatial analyzing and coding. You are required to give the code summary based on given code snippet. You should give clear information in the summary, such as language, platform, dataset, time and spatial range. Example summary: Select and clip images in America, June2024. Language: javascript, library: google earth engine, dataset:landsat 9 image collection.","var table = ee.FeatureCollection(""users/hanniavega/Ostional"");
+var img_l8 = ee.ImageCollection(""LANDSAT/LC08/C01/T1_SR"") 
+  .filterDate('2018-05-01', '2018-09-30')
+  .filterBounds(geometry) 
+  .filterMetadata('CLOUD_COVER', 'Less_Than', 10)
+  .sort('CLOUD_COVER').first()
+  .clip(geometry)
+  .multiply(0.0001);
+Map.centerObject(geometry);
+Map.addLayer(img_l8, {
+  min: 0.0,
+  max: 0.5,
+  gamma: 1.0,
+  bands: ['B4','B3','B2']}, 
+  'Imagen Landsat 8');","Select and display Landsat 8 images in a specified geometry with cloud cover less than 10%. Language: Javascript, Platform: Google Earth Engine, Dataset: Landsat 8 Image Collection, Time: May to September 2018.","### Instruction:
+You are an expert in geospatial analyzing and coding. You are required to give the code summary based on given code snippet. You should give clear information in the summary, such as language, platform, dataset, time and spatial range. Example summary: Select and clip images in America, June2024. Language: javascript, library: google earth engine, dataset:landsat 9 image collection.
+### Input:
+var table = ee.FeatureCollection(""users/hanniavega/Ostional"");
+var img_l8 = ee.ImageCollection(""LANDSAT/LC08/C01/T1_SR"") 
+  .filterDate('2018-05-01', '2018-09-30')
+  .filterBounds(geometry) 
+  .filterMetadata('CLOUD_COVER', 'Less_Than', 10)
+  .sort('CLOUD_COVER').first()
+  .clip(geometry)
+  .multiply(0.0001);
+Map.centerObject(geometry);
+Map.addLayer(img_l8, {
+  min: 0.0,
+  max: 0.5,
+  gamma: 1.0,
+  bands: ['B4','B3','B2']}, 
+  'Imagen Landsat 8');
+### Response:
+```json
+{
+  ""language"": ""javascript"",
+  ""platform"": ""Google Earth Engine"",
+  ""dataset"": ""Landsat 8 image collection"",
+  ""time_range"": ""2018-05-01 to 2018-09-30"",
+  ""spatial_range"": ""Geometry defined by the 'geometry' variable"",
+  ""summary"": ""The script selects and clips a Landsat 8 image from May 2018 to September 2018 for a specified geometry area. It filters the images based on cloud cover (less than 10%), sorts them by cloud cover, and selects the first one. The selected image is then multiplied by 0.0001 and added to the map with a specific color band combination.""
+}
+``` ```json
+{
+  ""language"": ""javascript"",
+  ""platform"": ""Google Earth Engine"",
+  ""dataset"": ""Landsat 8 image collection"",
+  ""time_range"": ""2018-05-01 to 2018-09-30"",
+  ""spatial_range"": ""Geometry defined by the 'geometry' variable"",
+  ""summary"": ""The script selects and clips a Landsat 8 image from May 2018 to September 2018 for a specified geometry area. It filters the images based on cloud cover (less than 10%), sorts them by cloud cover, and selects the first one. The selected image is then multiplied by 0.0001 and added to the map with a specific color band combination.""
+}
+```","### Instruction:
+You are an expert in geospatial analyzing and coding. You are required to give the code summary based on given code snippet. You should give clear information in the summary, such as language, platform, dataset, time and spatial range. Example summary: Select and clip images in America, June2024. Language: javascript, library: google earth engine, dataset:landsat 9 image collection.
+### Input:
+var table = ee.FeatureCollection(""users/hanniavega/Ostional"");
+var img_l8 = ee.ImageCollection(""LANDSAT/LC08/C01/T1_SR"") 
+  .filterDate('2018-05-01', '2018-09-30')
+  .filterBounds(geometry) 
+  .filterMetadata('CLOUD_COVER', 'Less_Than', 10)
+  .sort('CLOUD_COVER').first()
+  .clip(geometry)
+  .multiply(0.0001);
+Map.centerObject(geometry);
+Map.addLayer(img_l8, {
+  min: 0.0,
+  max: 0.5,
+  gamma: 1.0,
+  bands: ['B4','B3','B2']}, 
+  'Imagen Landsat 8');
+### Response:
+Select and clip Landsat 8 images for Ostional, Costa Rica, May to September 2018. Language: Javascript, Platform: Google Earth Engine, Dataset: Landsat 8 Image Collection. Time Range: May to September 2018, Spatial Range: Ostional, Costa Rica."
+"You are an expert in geospatial analyzing and coding. You are required to generate geospatial analysis code based on given code summary. Clear information is given in the summary, such as language, platform, dataset, time and spatial range. Code comments are not needed.","Calculate NDVI for Landsat 8 images in Xitianshan, 2015. Language: javascript, platform: google earth engine, dataset: landsat 8.","var addNDVI = function(image) {
+  var ndvi = image.normalizedDifference(['B5', 'B4']).rename('NDVI');
+  return image.addBands(ndvi);
+};
+var ROI=ee.FeatureCollection('users/Global_fire/Xitianshan')
+var image = ee.ImageCollection('LANDSAT/LC08/C01/T1_SR')
+              .filterDate('2015-01-01', '2015-12-30')
+              .filterBounds(ROI);
+var withNDVI = image.map(addNDVI);","### Instruction:
+You are an expert in geospatial analyzing and coding. You are required to generate geospatial analysis code based on given code summary. Clear information is given in the summary, such as language, platform, dataset, time and spatial range. Code comments are not needed.
+### Input:
+Calculate NDVI for Landsat 8 images in Xitianshan, 2015. Language: javascript, platform: google earth engine, dataset: landsat 8.
+### Response:
+```javascript
+var startDate = '2015-01-01';
+var endDate = '2015-12-31';
+var location = ee.Geometry.Point([104.07, 30.66]); // Xitianshan coordinates
+
+var landsat8 = ee.ImageCollection('LANDSAT/LC08/C01/T1_SR')
+  .filterDate(startDate, endDate)
+  .filterBounds(location);
+
+function calculateNDVI(image) {
+  var ndvi = image.normalizedDifference(['B5', 'B4']).rename('NDVI');
+  return image.addBands(ndvi);
+}
+
+var withNDVI = landsat8.map(calculateNDVI);
+
+// Export the NDVI images
+Export.image.toDrive({
+  collection: withNDVI.select('NDVI'),
+  description: 'Xitianshan_2015_NDVI',
+  scale: 30,
+  region: location.buffer(10000), // buffer around Xitianshan
+  maxPixels: 1e13
+});
+```","### Instruction:
+You are an expert in geospatial analyzing and coding. You are required to generate geospatial analysis code based on given code summary. Clear information is given in the summary, such as language, platform, dataset, time and spatial range. Code comments are not needed.
+### Input:
+Calculate NDVI for Landsat 8 images in Xitianshan, 2015. Language: javascript, platform: google earth engine, dataset: landsat 8.
+### Response:
+var L8 = ee.ImageCollection(""LANDSAT/LC08/C01/T1_SR"");
+var collection = L8.filterBounds(geometry)
+                   .filterDate('2015-01-01', '2015-12-31');
+var NDVI = collection.map(function(image) {
+  return image.normalizedDifference(['B5', 'B4'])
+          .rename('NDVI')
+          .copyProperties(image, image.propertyNames());
+});
+print(NDVI);"
+"You are an expert in geospatial analyzing and coding. You are required to give the code summary based on given code snippet. You should give clear information in the summary, such as language, platform, dataset, time and spatial range. Example summary: Select and clip images in America, June2024. Language: javascript, library: google earth engine, dataset:landsat 9 image collection.","import arcpy
+
+# Set environment settings
+arcpy.env.workspace = r'C:\data\city_pd.gdb'
+
+# Set local variables
+in_primary_features = 'CDR_PhoneA_Sites'
+in_secondary_features = 'CDR_PhoneB_Sites'
+out_link_lines_detail = 'out_call_links_detail'
+out_link_lines_summary = 'out_call_links_summary'
+
+# Execute the GenerateCallLinks tool
+arcpy.ca.GenerateCallLinks(in_primary_features, in_secondary_features, 
+out_link_lines_detail, 'DETAIL')","Select and analyze call locations in a city, October 2023. Language: Python, library: ArcPy, dataset: CDR_PhoneA and CDR_PhoneB features.","### Instruction:
+You are an expert in geospatial analyzing and coding. You are required to give the code summary based on given code snippet. You should give clear information in the summary, such as language, platform, dataset, time and spatial range. Example summary: Select and clip images in America, June2024. Language: javascript, library: google earth engine, dataset:landsat 9 image collection.
+### Input:
+import arcpy
+
+# Set environment settings
+arcpy.env.workspace = r'C:\data\city_pd.gdb'
+
+# Set local variables
+in_primary_features = 'CDR_PhoneA_Sites'
+in_secondary_features = 'CDR_PhoneB_Sites'
+out_link_lines_detail = 'out_call_links_detail'
+out_link_lines_summary = 'out_call_links_summary'
+
+# Execute the GenerateCallLinks tool
+arcpy.ca.GenerateCallLinks(in_primary_features, in_secondary_features, 
+out_link_lines_detail, 'DETAIL')
+### Response:
+```python
+import arcpy
+
+# Set environment settings
+arcpy.env.workspace = r'C:\data\city_pd.gdb'
+
+# Set local variables
+in_primary_features = 'CDR_PhoneA_Sites'
+in_secondary_features = 'CDR_PhoneB_Sites'
+out_link_lines_detail = 'out_call_links_detail'
+out_link_lines_summary = 'out_call_links_summary'
+
+# Execute the GenerateCallLinks tool
+arcpy.ca.GenerateCallLinks(in_primary_features, in_secondary_features, 
+                           out_link_lines_detail, 'DETAIL')
+```
+
+### Code Summary:
+- **Language**: Python
+- **Platform**: ArcGIS (via ArcPy)
+- **Dataset**: CDR_PhoneA_Sites and CDR_PhoneB_Sites (likely from a geodatabase)
+- **Functionality**: Generates call links between two sets of phone sites (primary and secondary features) and outputs detailed link lines.
+- **Output**: 
+  - `out_call_links_detail`: Detailed call link lines.
+  - `out_call_links_summary`: Summary of call link lines (though not directly generated by the provided script).
+- **Workspace**: The geodatabase is located at `C:\data\city_pd.gdb`.
+
+This script is designed to analyze and visualize call data relationships within a city's phone network, focusing on detailed link generation between specified phone site datasets.","### Instruction:
+You are an expert in geospatial analyzing and coding. You are required to give the code summary based on given code snippet. You should give clear information in the summary, such as language, platform, dataset, time and spatial range. Example summary: Select and clip images in America, June2024. Language: javascript, library: google earth engine, dataset:landsat 9 image collection.
+### Input:
+import arcpy
+
+# Set environment settings
+arcpy.env.workspace = r'C:\data\city_pd.gdb'
+
+# Set local variables
+in_primary_features = 'CDR_PhoneA_Sites'
+in_secondary_features = 'CDR_PhoneB_Sites'
+out_link_lines_detail = 'out_call_links_detail'
+out_link_lines_summary = 'out_call_links_summary'
+
+# Execute the GenerateCallLinks tool
+arcpy.ca.GenerateCallLinks(in_primary_features, in_secondary_features, 
+out_link_lines_detail, 'DETAIL')
+### Response:
+Generate call links between phone sites in a city using ArcGIS tools. Language: Python, Library: ArcPy, Platform: ArcGIS, Dataset: City phone data, Time: October 2023, Spatial Range: City of interest."
+"You are an expert in geospatial analyzing and coding. You are required to generate geospatial analysis code based on given code summary. Clear information is given in the summary, such as language, platform, dataset, time and spatial range. Code comments are not needed.","Select city boundaries in Henan, China. Language: Python, Platform: Google Earth Engine, Dataset: Administrative boundaries.","import ee
+
+china_pro = ee.FeatureCollection(""users/etyi/china_pro"")
+henan = china_pro.filter(ee.Filter.eq('OBJECTID', 10))
+ee.Map.centerObject(henan, 6)
+
+china_city = ee.FeatureCollection(""users/etyi/china_city"")
+henan_city = china_city.filter(ee.Filter.or(
+  ee.Filter.eq('OBJECTID', 10),
+  ee.Filter.eq('OBJECTID', 113),
+  ee.Filter.eq('OBJECTID', 350)
+))
+ee.Map.addLayer(henan_city)","### Instruction:
+You are an expert in geospatial analyzing and coding. You are required to generate geospatial analysis code based on given code summary. Clear information is given in the summary, such as language, platform, dataset, time and spatial range. Code comments are not needed.
+### Input:
+Select city boundaries in Henan, China. Language: Python, Platform: Google Earth Engine, Dataset: Administrative boundaries.
+### Response:
+```python
+import ee
+
+# Initialize the Earth Engine library
+ee.Initialize()
+
+# Define the time range
+start_date = '2020-01-01'
+end_date = '2020-12-31'
+
+# Define the spatial range (Henan province)
+henan_geometry = ee.Geometry.Rectangle([113.66, 33.44, 115.48, 34.91])
+
+# Load the administrative boundaries dataset
+admin_boundaries = ee.ImageCollection('USDOS/LSIB_SIMPLE/2017')
+
+# Filter the dataset to select only Henan province
+henan_admin_boundaries = admin_boundaries.filterBounds(henan_geometry).filter(ee.Filter.eq('country_na', 'China')).filter(ee.Filter.eq('name', 'Henan'))
+
+# Print the result
+print(henan_admin_boundaries)
+```","### Instruction:
+You are an expert in geospatial analyzing and coding. You are required to generate geospatial analysis code based on given code summary. Clear information is given in the summary, such as language, platform, dataset, time and spatial range. Code comments are not needed.
+### Input:
+Select city boundaries in Henan, China. Language: Python, Platform: Google Earth Engine, Dataset: Administrative boundaries.
+### Response:
+import ee
+
+# Initialize the Earth Engine library
+ee.Initialize()
+
+# Define the area of interest (Henan province)
+AOI = ee.FeatureCollection(""users/3145094557/henan"")
+
+# Load the administrative boundaries for Henan
+city_boundaries = ee.FeatureCollection(""users/3145094557/city_boundary"")
+
+# Filter the administrative boundaries to only include Henan's cities
+city_boundaries = city_boundaries.filter(ee.Filter.eq('PROVINCE', '河南省'))
+
+# Print the filtered city boundaries to the console
+print(city_boundaries)"
+"Which region does the dataset 'iSDAsoil Extractable Phosphorus' focus on? Choose from the four answers, only one is correct. Just output A/B/C/D but nothing more.","A) Africa
+B) Europe
+C) Asia
+D) South America",A,"### Instruction:
+Which region does the dataset 'iSDAsoil Extractable Phosphorus' focus on? Choose from the four answers, only one is correct. Just output A/B/C/D but nothing more.
+### Input:
+A) Africa
+B) Europe
+C) Asia
+D) South America
+### Response:
+A) Africa
+```python
+# No additional code needed as the response is already provided.
+```","### Instruction:
+Which region does the dataset 'iSDAsoil Extractable Phosphorus' focus on? Choose from the four answers, only one is correct. Just output A/B/C/D but nothing more.
+### Input:
+A) Africa
+B) Europe
+C) Asia
+D) South America
+### Response:
+C) Asia, specifically the region of Jiangsu Province, China."

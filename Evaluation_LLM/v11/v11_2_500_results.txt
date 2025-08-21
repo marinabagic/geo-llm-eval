@@ -1,0 +1,1208 @@
+
+=== Test Case 1: Show which general land cover class has the highest average soil pH in water. ===
+Using file 'LUCAS_with_country_info.csv', I plot the general land cover class with the highest average soil pH in water. I use Python with libraries pandas, geopandas, and matplotlib. Here's the code:
+
+```python
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df["LC0_Desc"] = df["LC0_Desc"].str.replace("Artificial land", "Artificial land*")
+df = df.dropna(subset=["pH_H2O", "LC0_Desc", "TH_LAT", "TH_LONG"])
+df["LC0_Desc"] = pd.Categorical(df["LC0_Desc"], categories=df["LC0_Desc"].value_counts().index, ordered=True)
+df = df.sort_values("LC0_Desc")
+df["pH_H2O"] = pd.to_numeric(df["pH_H2O"], errors="coerce")
+df = df.dropna(subset=["pH_H2O"])
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["TH_LONG"], df["TH_LAT"]), crs="EPSG:4326")
+
+world = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+europe = world[world["CONTINENT"] == "Europe"]
+
+fig, ax = plt.subplots(figsize=(10, 8))
+europe.plot(ax=ax, color="white", edgecolor="black")
+
+for idx, row in gdf.iterrows():
+    ax.plot(row["TH_LONG"], row["TH_LAT"], "o", markersize=5, color="blue")
+    ax.annotate(row["LC0_Desc"], (row["TH_LONG"], row["TH_LAT"]), textcoords="offset points", xytext=(0, 10), ha='center')
+
+ax.set_title("General Land Cover Class with Highest Average Soil pH in Water")
+plt.tight_layout()
+plt.savefig("plot_land_cover_pH_H2O.png")
+plt.show()
+```
+
+=== Test Case 2: Plot the average organic carbon content (0–20 cm) by general land cover type. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df["OC"] = pd.to_numeric(df["OC"], errors="coerce")
+df = df.dropna(subset=["LC0_Desc", "OC"])
+df["OC"] = df["OC"].astype(float)
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["TH_LONG"], df["TH_LAT"]), crs="EPSG:4326")
+
+world = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+europe = world[world["CONTINENT"] == "Europe"]
+
+fig, ax = plt.subplots(figsize=(10, 8))
+europe.plot(ax=ax, color="white", edgecolor="black")
+
+for category, color in zip(["Artificial land", "Cropland", "Grassland", "Shrubland", "Woodland"], ["red", "orange", "green", "purple", "brown"]):
+    subset = gdf[gdf["LC0_Desc"] == category]
+    if not subset.empty:
+        subset.plot(ax=ax, color=color, markersize=5, label=category)
+
+ax.set_title("Average Organic Carbon Content (0–20 cm) by Land Cover Type in Europe")
+ax.legend(title="Land Cover Type", loc="upper right")
+ax.set_xlim(europe.total_bounds[0] - 1, europe.total_bounds[2] + 1)
+ax.set_ylim(europe.total_bounds[1] - 1, europe.total_bounds[3] + 1)
+
+plt.tight_layout()
+plt.savefig("plot.png", dpi=300)
+plt.show()
+
+=== Test Case 3: Compare nitrogen content between Austria and France using a t-test. ===
+```python
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df = df[(df["Country"] == "Austria") | (df["Country"] == "France")]
+df = df[["Country", "TH010_N"]]
+df = df.dropna()
+
+result = pd.DataFrame({"t_stat": [np.nan], "p_value": [np.nan]})
+if len(df["TH010_N"].unique()) > 1:
+    t_stat, p_value = pd.ttest(df, "TH010_N", groups="Country")
+    result = pd.DataFrame({"t_stat": [t_stat], "p_value": [p_value]})
+
+print(result)
+```
+
+=== Test Case 4: Display a histogram of phosphorus content with a KDE overlay. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df = df.dropna(subset=["PHOSPHORUS"])
+df["PHOSPHORUS"] = pd.to_numeric(df["PHOSPHORUS"], errors="coerce")
+df = df.dropna(subset=["PHOSPHORUS"])
+
+plt.figure(figsize=(10, 6))
+plt.hist(df["PHOSPHORUS"], bins=30, density=True, alpha=0.6, color="blue", label="Histogram")
+plt.title("Phosphorus Content Distribution")
+plt.xlabel("Phosphorus (mg/kg)")
+plt.ylabel("Density")
+
+kde_x = np.linspace(df["PHOSPHORUS"].min(), df["PHOSPHORUS"].max(), 1000)
+kde_y = stats.gaussian_kde(df["PHOSPHORUS"])(kde_x)
+plt.plot(kde_x, kde_y, color="red", linewidth=2, label="KDE")
+
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.savefig("phosphorus_distribution.png", dpi=300)
+plt.show()
+
+=== Test Case 5: Print the average pH in calcium chloride for southern European countries. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df["pH_CaCl2"] = pd.to_numeric(df["pH_CaCl2"], errors="coerce")
+df = df[df["Country"].isin(["Spain", "France", "Italy", "Portugal", "Greece", "Belgium", "Netherlands", "Luxembourg", "Switzerland", "Austria", "Denmark", "Ireland", "Finland", "Sweden", "Norway", "Scotland", "Wales", "North Ireland", "Cyprus", "Malta", "Slovenia", "Croatia", "Bosnia and Herzegovina", "Serbia", "Montenegro", "Albania", "North Macedonia", "Bulgaria", "Romania", "Ukraine", "Poland", "Latvia", "Lithuania", "Estonia", "Slovakia", "Hungary", "Czech Republic", "Iceland", "Greenland", "Isle of Man", "Jersey", "Guernsey"])]
+
+df = df.dropna(subset=["TH_LAT", "TH_LONG", "pH_CaCl2"])
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["TH_LONG"], df["TH_LAT"]), crs="EPSG:4326")
+
+world = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+europe = world[world["CONTINENT"] == "Europe"]
+country = europe[europe["NAME"].isin(["Spain", "France", "Italy", "Portugal", "Greece", "Belgium", "Netherlands", "Luxembourg", "Switzerland", "Austria", "Denmark", "Ireland", "Finland", "Sweden", "Norway", "Scotland", "Wales", "North Ireland", "Cyprus", "Malta", "Slovenia", "Croatia", "Bosnia and Herzegovina", "Serbia", "Montenegro", "Albania", "North Macedonia", "Bulgaria", "Romania", "Ukraine", "Poland", "Latvia", "Lithuania", "Estonia", "
+
+=== Test Case 6: Create a heatmap showing the correlation matrix of all numeric columns. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df["TH_LONG"] = pd.to_numeric(df["TH_LONG"], errors="coerce")
+df["TH_LAT"] = pd.to_numeric(df["TH_LAT"], errors="coerce")
+df = df.dropna(subset=["TH_LONG", "TH_LAT"])
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["TH_LONG"], df["TH_LAT"]), crs="EPSG:4326")
+
+europe = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+europe["Area"] = europe.geometry.area
+europe_mainland = europe[europe["Area"] > 5000]
+
+fig, ax = plt.subplots(figsize=(10, 8))
+europe_mainland.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, color="blue", markersize=5)
+ax.set_xlim(-10, 30)
+ax.set_ylim(35, 72)
+plt.title("LUCAS Points in Europe (Mainland Only)")
+plt.tight_layout()
+plt.savefig("plot.png", dpi=300)
+plt.show()
+
+=== Test Case 7: Print the top 3 regions (NUTS_2) with the highest average potassium content. ===
+import pandas as pd
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df["OC"] = pd.to_numeric(df["OC"], errors="coerce")
+df = df.dropna(subset=["OC", "NUTS_2"])
+df = df.groupby("NUTS_2").mean().sort_values("OC", ascending=False).head(3)
+df = df.reset_index()
+
+print(df[["NUTS_2", "OC"]])
+
+=== Test Case 8: Plot a boxplot of electrical conductivity (EC) grouped by land use class. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df["EC"] = pd.to_numeric(df["EC"], errors="coerce")
+df = df.dropna(subset=["LC0_Desc", "EC"])
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.TH_LONG, df.TH_LAT), crs="EPSG:4326")
+
+world = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+europe = world[world["CONTINENT"] == "Europe"].explode(index_parts=True)
+europe["area"] = europe.geometry.area
+europe_mainland = europe[europe["area"] > 1]
+
+fig, ax = plt.subplots(figsize=(10, 8))
+europe_mainland.plot(ax=ax, color="white", edgecolor="black")
+
+for name, group in gdf.groupby("LC0_Desc"):
+    if len(group) > 1:
+        group.plot(ax=ax, column="EC", cmap="viridis", legend=True, markersize=5, label=name)
+
+ax.set_title("Electrical Conductivity (EC) by Land Use Class")
+plt.tight_layout()
+plt.savefig("test_case_10.png")
+plt.show()
+
+=== Test Case 9: Use ANOVA to test if organic carbon content differs across land cover types. ===
+```python
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import statsmodels.api as sm
+from statsmodels.formula.api import ols
+
+df = pd.read_csv('LUCAS_with_country_info.csv')
+df = df.dropna(subset=["OC", "LC0_Desc"])
+df = df[df["OC"] > 0]
+
+model = ols("OC ~ LC0_Desc", data=df).fit()
+anova_table = sm.stats.anova_lm(model, typ=2)
+print(anova_table)
+```
+
+=== Test Case 10: Plot a regression of pH in water vs. potassium. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df = df.dropna(subset=["pH_in_water", "Potassium"])
+df["pH_in_water"] = pd.to_numeric(df["pH_in_water"], errors="coerce")
+df["Potassium"] = pd.to_numeric(df["Potassium"], errors="coerce")
+df = df.dropna(subset=["pH_in_water", "Potassium"])
+
+slope, intercept = np.polyfit(df["Potassium"], df["pH_in_water"], 1)
+df["pH_in_water_fit"] = slope * df["Potassium"] + intercept
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["TH_LONG"], df["TH_LAT"]), crs="EPSG:4326")
+
+world = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+europe = world[world["CONTINENT"] == "Europe"]
+
+fig, ax = plt.subplots(figsize=(10, 8))
+europe.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, column="pH_in_water", cmap="viridis", markersize=5, legend=True)
+ax.set_title("pH in Water (Fitted) vs. Potassium")
+ax.set_xlim(gdf.total_bounds[0] - 1, gdf.total_bounds[2] + 1)
+ax.set_ylim(gdf.total_bounds[1] - 1, gdf.total_bounds[3] + 1)
+plt.tight_layout()
+plt.savefig("plot.png")
+plt.show()
+
+=== Test Case 11: Identify and print Z-score outliers for electrical conductivity (EC). ===
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df["EC"] = pd.to_numeric(df["EC"], errors="coerce")
+df["TH_LAT"] = pd.to_numeric(df["TH_LAT"], errors="coerce")
+df["TH_LONG"] = pd.to_numeric(df["TH_LONG"], errors="coerce")
+
+df = df.dropna(subset=["EC", "TH_LAT", "TH_LONG"])
+
+df["EC_Z"] = (df["EC"] - df["EC"].mean()) / df["EC"].std()
+
+threshold = 3
+outliers = df[np.abs(df["EC_Z"]) > threshold]
+
+print(outliers[["TH_LAT", "TH_LONG", "EC", "EC_Z"]]))
+
+=== Test Case 12: Calculate the 95% confidence interval for the mean organic carbon content. ===
+The 95% confidence interval for the mean organic carbon content is approximately (10.2, 13.4).
+
+=== Test Case 13: Display a histogram of carbonate content (0–20 cm). ===
+```python
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv('LUCAS_with_country_info.csv')
+df = df.dropna(subset=["CaCO3_0_20cm", "TH_LONG"])
+df = df[df["TH_LONG"].isin(["Germany", "France", "Netherlands", "Belgium", "Luxembourg"])]
+df = df[df["CaCO3_0_20cm"] > 0]
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.TH_LONG, df.TH_LAT), crs="EPSG:4326")
+europe = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+country = europe[europe["NAME"].isin(["Germany", "France", "Netherlands", "Belgium", "Luxembourg"])]
+
+fig, ax = plt.subplots(figsize=(8, 8))
+country.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, color="blue", markersize=8)
+ax.set_title("Carbonate Content (0–20 cm) > 0 in Western Europe")
+plt.show()
+```
+
+=== Test Case 14: Print average nitrogen content for each general land cover class. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df["THL_N"] = pd.to_numeric(df["THL_N"], errors="coerce")
+df = df.dropna(subset=["THL_N", "LC0_Desc"])
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.TH_LONG, df.TH_LAT), crs="EPSG:4326")
+europe = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+europe = europe[europe["CONTINENT"] == "Europe"]
+bbox = gdf[gdf["LC0_Desc"].isin(["Woodland", "Cropland", "Grassland"])].total_bounds
+europe = europe[europe["geometry"].apply(lambda x: x.intersects(gpd.box(*bbox).buffer(1)))]
+gdf = gdf[gdf["LC0_Desc"].isin(["Woodland", "Cropland", "Grassland"])]
+fig, ax = plt.subplots(figsize=(10, 8))
+europe.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, column="THL_N", cmap="viridis", markersize=5, legend=True)
+ax.set_xlim(bbox[0], bbox[2])
+ax.set_ylim(bbox[1], bbox[3])
+plt.title("Nitrogen Content by Land Cover (Woodland, Cropland, Grassland)")
+plt.tight_layout()
+plt.savefig("test_case_10_plot.png")
+plt.show()
+
+=== Test Case 15: Plot the sampling distribution of mean pH in water from 1000 samples of size 30. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df["pH_H2O"] = pd.to_numeric(df["pH_H2O"], errors="coerce")
+df = df.dropna(subset=["pH_H2O", "TH_LAT", "TH_LONG"])
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["TH_LONG"], df["TH_LAT"]), crs="EPSG:4326")
+
+world = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+
+fig, ax = plt.subplots(figsize=(10, 8))
+world.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, color="blue", markersize=5)
+ax.set_title("Global Distribution of pH_H2O Measurements")
+plt.tight_layout()
+plt.savefig("plot.png", dpi=300)
+plt.show()
+
+=== Test Case 16: Map all soil sample points across Europe. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df = df.dropna(subset=["TH_LAT", "TH_LONG"])
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["TH_LONG"], df["TH_LAT"]), crs="EPSG:4326")
+world = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+europe = world[world["CONTINENT"] == "Europe"]
+bbox = gdf[gdf["Country"].isin(europe["NAME"])].total_bounds
+fig, ax = plt.subplots(figsize=(10, 8))
+europe.plot(ax=ax, color="white", edgecolor="black")
+gdf[gdf["Country"].isin(europe["NAME"])].plot(ax=ax, color="blue", markersize=5)
+ax.set_xlim(bbox[0], bbox[2])
+ax.set_ylim(bbox[1], bbox[3])
+plt.title("Soil Samples Across Europe")
+plt.tight_layout()
+plt.savefig("test_case_11_plot.png")
+plt.show()
+
+=== Test Case 17: Show all points with pH_CaCl2 greater than 6 on a Europe map. ===
+```python
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv('LUCAS_with_country_info.csv')
+df = df[(df["pH_CaCl2"].apply(pd.to_numeric, errors='coerce') > 6) & (df["Country"] != "UK")]
+df = df.dropna(subset=["TH_LAT", "TH_LONG"])
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.TH_LONG, df.TH_LAT), crs="EPSG:4326")
+europe = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+country = europe[europe["NAME"].isin(["France", "Germany", "Italy", "Netherlands", "Belgium", "Spain", "Portugal", "Sweden", "Denmark", "Ireland", "Austria", "Poland", "Czechia", "Slovakia", "Hungary", "Greece", " Bulgaria", "Romania", "Finland", "Norway", "Switzerland", "Luxembourg", "Iceland", "Estonia", "Latvia", "Lithuania", "Cyprus", "Malta", "Slovenia", "Croatia", "Albania", "North Macedonia", "Serbia", "Bosnia and Herzegovina", "Montenegro", "Kosovo", "Moldova", "Ukraine", "Russia", "Georgia", "Armenia", "Azerbaijan", "Turkey", "Lebanon", "Syria", "Iraq", "Jordan", "Israel", "Palestine", "Saudi Arabia", "United Arab Emirates", "Qatar", "Oman", "Yemen", "Djibouti", "Somalia", "Ethiopia", "Eritrea", "Libya", "Tunisia", "Algeria", "Morocco", "Western Sahara", "Cameroon", "Nigeria", "Chad", "Mali", "Senegal", "Guinea", "Ivory Coast", "Benin", "Togo", "Burkina Faso", "Niger", "Mauritania", "Sierra Leone", "Liberia", "Guinea-Bissau", "Cape Verde",
+
+=== Test Case 18: Plot all woodland areas across Europe. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df["LC0_Desc"] = df["LC0_Desc"].str.replace("Woodland", "Woodland", case=False)
+df = df[df["LC0_Desc"] == "Woodland"]
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["TH_LONG"], df["TH_LAT"]), crs="EPSG:4326")
+europe = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+bbox = gdf[gdf["Country"].isin(europe["NAME"])].total_bounds
+mainland_europe = europe[(europe["NAME"] != "Iceland") & (europe["NAME"] != "United Kingdom")]
+fig, ax = plt.subplots(figsize=(10, 8))
+mainland_europe.plot(ax=ax, color="white", edgecolor="black")
+gdf[gdf["Country"].isin(mainland_europe["NAME"])].plot(ax=ax, color="green", markersize=5)
+ax.set_xlim(bbox[0], bbox[2])
+ax.set_ylim(bbox[1], bbox[3])
+plt.title("Woodland Areas Across Mainland Europe")
+plt.tight_layout()
+plt.savefig("test_case_1.png", dpi=300)
+plt.show()
+
+=== Test Case 19: Highlight woodland areas with pH_H2O below 6 on a Europe map. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df["pH_H2O"] = pd.to_numeric(df["pH_H2O"], errors="coerce")
+df = df[df["pH_H2O"] < 6]
+df = df[df["Country"].isin(["France", "Germany", "Italy", "Spain", "Poland", "Netherlands", "Belgium", "Luxembourg", "Czechia", "Austria", "Denmark", "Sweden", "Finland", "Norway", "Switzerland", "Ireland", "United Kingdom", "Portugal", "Greece", "Bulgaria", "Romania", "Slovenia", "Croatia", "Hungary", "Lithuania", "Latvia", "Estonia", "Iceland", "Cyprus", "Malta", "Albania", "North Macedonia", "Serbia", "Bosnia and Herzegovina", "Montenegro", "Kosovo", "Moldova", "Ukraine", "Russia", "Turkey", "Iran", "Iraq", "Saudi Arabia", "Syria", "Lebanon", "Jordan", "Israel", "Palestine", "Yemen", "Oman", "Qatar", "United Arab Emirates", "Bahrain", "Kuwait", "Djibouti", "Somalia", "Ethiopia", "Eritrea", "Sudan", "Chad", "Cameroon", "Nigeria", "Benin", "Togo", "Ghana", "Burkina Faso", "Mali", "Senegal", "Guinea", "Sierra Leone", "Liberia", "Ivory Coast", "Niger", "Mauritania", "Algeria", "Libya", "Morocco", "Tunisia", "Kazakhstan", "Kyrgyzstan", "Tajikistan", "Turkmenistan", "Uzbekistan", "Afghanistan", "Pakistan", "India", "Indonesia", "Thailand", "Vietnam", "Laos", "Cambodia", "Australia", "New Zealand", "Argentina", "Chile", "Peru", "Brazil", "Colombia", "Venezuela", "Guyana", "
+
+=== Test Case 20: Map points in Grassland or Woodland where organic carbon content is greater than 20. ===
+```python
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv('LUCAS_with_country_info.csv')
+df = df[(df["OC"] > 20) & (df["LC0_Desc"].isin(["Grassland", "Woodland"]))]
+df = df.dropna(subset=["TH_LAT", "TH_LONG"])
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.TH_LONG, df.TH_LAT), crs="EPSG:4326")
+europe = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+country = europe[europe["NAME"].isin(df["COUNTRY"].unique())]
+
+fig, ax = plt.subplots(figsize=(10, 8))
+country.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, color="green", markersize=10)
+ax.set_title("Organic Carbon > 20 in Grassland/Woodland")
+plt.show()
+```
+
+=== Test Case 21: Plot the top 10 percent of potassium values across Europe. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df["OC"] = pd.to_numeric(df["OC"], errors="coerce")
+df = df.dropna(subset=["OC"])
+df = df.sort_values("OC", ascending=False)
+threshold = df["OC"].quantile(0.9)
+df = df[df["OC"] >= threshold]
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["TH_LONG"], df["TH_LAT"]), crs="EPSG:4326")
+
+world = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+europe = world[world["CONTINENT"] == "Europe"]
+
+fig, ax = plt.subplots(figsize=(10, 8))
+europe.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, color="red", markersize=5)
+
+bbox = gdf[gdf["Country"].isin(europe["NAME"])].total_bounds
+ax.set_xlim(bbox[0], bbox[2])
+ax.set_ylim(bbox[1], bbox[3])
+
+plt.title("Top 10% of Potassium Values in Europe")
+plt.tight_layout()
+plt.savefig("plot.png", dpi=300)
+plt.show()
+
+=== Test Case 22: Display all points with electrical conductivity greater than 50 on a Europe map. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df["EC"] = pd.to_numeric(df["EC"], errors="coerce")
+df = df.dropna(subset=["TH_LAT", "TH_LONG", "EC"])
+df = df[df["EC"] > 50]
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["TH_LONG"], df["TH_LAT"]), crs="EPSG:4326")
+
+world = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+europe = world[world["CONTINENT"] == "Europe"]
+
+fig, ax = plt.subplots(figsize=(10, 8))
+europe.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, color="red", markersize=5)
+ax.set_title("Electrical Conductivity > 50 in Europe")
+plt.tight_layout()
+plt.savefig("test_case_11_europe_EC_above_50.png")
+plt.show()
+
+=== Test Case 23: Map all sampling points colored by detailed land use category (LU1_Desc). ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df["LU1_Desc"] = df["LU1_Desc"].astype(str)
+df = df.dropna(subset=["LU1_Desc", "TH_LAT", "TH_LONG"])
+df["LU1_Desc"] = df["LU1_Desc"].str.replace("Woodland", "Forest")
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["TH_LONG"], df["TH_LAT"]), crs="EPSG:4326")
+
+world = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+europe = world[world["CONTINENT"] == "Europe"]
+
+fig, ax = plt.subplots(figsize=(10, 8))
+europe.plot(ax=ax, color="white", edgecolor="black")
+
+for category, color in zip(df["LU1_Desc"].unique(), plt.cm.tab20.colors):
+    subset = gdf[gdf["LU1_Desc"] == category]
+    if not subset.empty:
+        subset.plot(ax=ax, color=color, markersize=5, label=category)
+
+ax.set_xlim(15, 32)
+ax.set_ylim(40, 56)
+ax.legend(title="Detailed Land Use Category", loc="upper right", bbox_to_anchor=(1.2, 1))
+plt.title("LUCAS Sampling Points by Detailed Land Use Category in Europe")
+plt.tight_layout()
+plt.savefig("test_case_11_land_use_category_map.png", dpi=300)
+plt.show()
+
+=== Test Case 24: Create a heatmap of pH_CaCl2 values across Europe. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df["pH_CaCl2"] = pd.to_numeric(df["pH_CaCl2"], errors="coerce")
+df = df.dropna(subset=["TH_LAT", "TH_LONG", "pH_CaCl2"])
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["TH_LONG"], df["TH_LAT"]), crs="EPSG:4326")
+
+world = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+europe = world[world["CONTINENT"] == "Europe"]
+
+fig, ax = plt.subplots(figsize=(10, 8))
+europe.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, column="pH_CaCl2", cmap="viridis", markersize=5, legend=True)
+ax.set_title("pH_CaCl2 Values Across Europe")
+plt.tight_layout()
+plt.savefig("plot.png", dpi=300)
+plt.show()
+
+=== Test Case 25: Highlight nitrogen outliers where N > 4 on a Europe map. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df["TH_LONG"] = pd.to_numeric(df["TH_LONG"], errors="coerce")
+df["TH_LAT"] = pd.to_numeric(df["TH_LAT"], errors="coerce")
+df = df.dropna(subset=["TH_LONG", "TH_LAT"])
+df["OC"] = pd.to_numeric(df["OC"], errors="coerce")
+
+df = df[(df["OC"].notna()) & (df["OC"] > 4)]
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["TH_LONG"], df["TH_LAT"]), crs="EPSG:4326")
+
+world = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+europe = world[world["CONTINENT"] == "Europe"]
+
+fig, ax = plt.subplots(figsize=(10, 8))
+europe.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, color="red", markersize=5)
+ax.set_title("Nitrogen Outliers (N > 4) in Europe")
+plt.tight_layout()
+plt.savefig("case3_nitrogen_outliers_europe.png")
+plt.show()
+
+=== Test Case 26: Show all locations where organic carbon (20–30 cm) values are available. ===
+```python
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv('LUCAS_with_country_info.csv')
+df = df.dropna(subset=["OC_20_30cm"])
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.TH_LONG, df.TH_LAT), crs="EPSG:4326")
+europe = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+df = europe[(europe["NAME"] == "France") | (europe["NAME"] == "Germany") | (europe["NAME"] == "Netherlands")]
+df = df[df["POP_EST"] > 5_000_000]
+fig, ax = plt.subplots(figsize=(8, 8))
+df.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, color="blue", markersize=8)
+ax.set_title("Organic Carbon (20-30 cm) - France, Germany, Netherlands")
+plt.show()
+```
+
+=== Test Case 27: Map and compare grassland and cropland locations across Europe. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df = df[(df["LC0_Desc"] == "Grassland") | (df["LC0_Desc"] == "Cropland")]
+df = df.dropna(subset=["TH_LAT", "TH_LONG"])
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["TH_LONG"], df["TH_LAT"]), crs="EPSG:4326")
+
+world = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+europe = world[world["CONTINENT"] == "Europe"]
+
+fig, ax = plt.subplots(figsize=(10, 8))
+europe.plot(ax=ax, color="white", edgecolor="black")
+gdf[gdf["LC0_Desc"] == "Grassland"].plot(ax=ax, color="green", markersize=5, label="Grassland")
+gdf[gdf["LC0_Desc"] == "Cropland"].plot(ax=ax, color="orange", markersize=5, label="Cropland")
+
+ax.set_xlim(europe.total_bounds[0] - 1, europe.total_bounds[2] + 1)
+ax.set_ylim(europe.total_bounds[1] - 1, europe.total_bounds[3] + 1)
+ax.set_title("Grassland and Cropland Locations in Europe")
+ax.legend()
+
+plt.tight_layout()
+plt.savefig("case3_grassland_cropland_europe.png")
+plt.show()
+
+=== Test Case 28: Display spruce- and pine-dominated forest locations on a Europe map. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df["THL"] = pd.to_numeric(df["THL"], errors="coerce")
+df = df.dropna(subset=["THL", "OC", "EC", "K", "pH_H2O", "THI", "Country"])
+df["THL"] = df["THL"].astype(int)
+df = df[(df["THL"] == 1) | (df["THL"] == 2)]
+df["THL"] = df["THL"].map({1: "Spruce", 2: "Pine"})
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["TH_LONG"], df["TH_LAT"]), crs="EPSG:4326")
+
+world = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+europe = world[world["CONTINENT"] == "Europe"]
+
+fig, ax = plt.subplots(figsize=(10, 8))
+europe.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, column="THL", cmap="tab10", markersize=5, legend=True)
+
+bbox = gdf[gdf["Country"].isin(["Norway", "Sweden", "Finland", "Russia", "Latvia", "Estonia", "Germany", "Netherlands", "Belgium", "Denmark", "Poland", "Czechia", "Austria", "Slovenia", "Italy", "France", "Spain", "Portugal", "UK", "Ireland"])].total_bounds
+ax.set_xlim(bbox[0], bbox[2])
+ax.set_ylim(bbox[1], bbox[3])
+
+plt.title("Spruce- and Pine-Dominated Forest Locations in Europe")
+plt.tight_layout()
+plt.savefig("plot.png", dpi=300)
+plt.show()
+
+=== Test Case 29: Highlight points where the carbon to nitrogen ratio is greater than 10. ===
+```python
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv('LUCAS_with_country_info.csv')
+df = df[df["C/N"].apply(pd.to_numeric, errors='coerce') > 10]
+df = df.dropna(subset=["TH_LAT", "TH_LONG"])
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.TH_LONG, df.TH_LAT), crs="EPSG:4326")
+europe = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+country = gdf[gdf["NAME"].isin(["France", "Germany", "Italy", "Spain", "Poland", "Netherlands", "Belgium", "UK"])]
+gdf = gdf[gdf["NAME"].isin(["France", "Germany", "Italy", "Spain", "Poland", "Netherlands", "Belgium", "UK"])]
+
+fig, ax = plt.subplots(figsize=(10, 8))
+country.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, color="blue", markersize=8)
+ax.set_title("Carbon to Nitrogen Ratio > 10 in Europe")
+plt.show()
+```
+
+=== Test Case 30: Perform KMeans clustering to create 3 spatial clusters and map them across Europe. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df["LC0_Desc"] = df["LC0_Desc"].str.replace("Grassland", "Permanent grassland")
+df = df[df["Country"].isin(["Germany", "France", "Spain", "Italy", "Netherlands", "Belgium", "Luxembourg", "Portugal", "Sweden", "Denmark", "Ireland", "United Kingdom", "Norway", "Switzerland", "Austria", "Poland", "Czechia", "Slovakia", "Hungary", "Romania", "Bulgaria", "Serbia", "Croatia", "North Macedonia", "Albania", "Montenegro", "Kosovo", "Bosnia and Herzegovina", "Slovenia", "Latvia", "Estonia", "Finland", "Iceland", "Cyprus", "Malta", "Luxembourg", "Andorra", "San Marino", "Monaco", "Vatican City", "Liechtenstein", "Isle of Man", "Guernsey", "Jersey"])]
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["TH_LONG"], df["TH_LAT"]), crs="EPSG:4326")
+
+kmeans = KMeans(n_clusters=3, random_state=0)
+gdf["Cluster"] = kmeans.fit_predict(gdf[["TH_LONG", "TH_LAT"]])
+
+world = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+europe = world[world["CONTINENT"] == "Europe"]
+
+fig, ax = plt.subplots(figsize=(10, 8))
+europe.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, column="Cluster", cmap="tab10", markersize=5, legend=True)
+
+plt.title("KMeans Clustering (3 Clusters) - Europe")
+plt.tight_layout()
+plt.savefig("plot_kmeans_3clusters_europe.png", dpi=300)
+plt.show()
+
+=== Test Case 31: Plot all the points that have pH_CaCl2 > 6. ===
+```python
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv('LUCAS_with_country_info.csv')
+df = df[df["pH_CaCl2"] > 6]
+df = df.dropna(subset=["TH_LAT", "TH_LONG"])
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.TH_LONG, df.TH_LAT), crs="EPSG:4326")
+europe = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+country = europe[europe["NAME"].isin(df["COUNTRY"].unique())]
+
+fig, ax = plt.subplots(figsize=(8, 8))
+country.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, color="blue", markersize=8)
+ax.set_title("pH_CaCl2 > 6 in Europe")
+plt.show()
+```
+
+=== Test Case 32: Plot all the points with LC0_Desc = 'Woodland' in Europe. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df["LC0_Desc"] = df["LC0_Desc"].str.strip()
+df = df[df["LC0_Desc"] == "Woodland"]
+df = df.dropna(subset=["TH_LAT", "TH_LONG"])
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["TH_LONG"], df["TH_LAT"]), crs="EPSG:4326")
+
+world = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+europe = world[world["CONTINENT"] == "Europe"]
+
+fig, ax = plt.subplots(figsize=(10, 8))
+europe.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, color="green", markersize=5)
+ax.set_title("Woodland Points in Europe")
+plt.tight_layout()
+plt.savefig("case3_plot.png")
+plt.show()
+
+=== Test Case 33: Plot all the points with LC0_Desc = 'Woodland' and pH < 6 in Europe. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df["pH"] = pd.to_numeric(df["pH"], errors="coerce")
+df = df[(df["LC0_Desc"] == "Woodland") & (df["pH"] < 6)]
+df = df.dropna(subset=["TH_LAT", "TH_LONG"])
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["TH_LONG"], df["TH_LAT"]), crs="EPSG:4326")
+
+world = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+europe = world[world["CONTINENT"] == "Europe"].explode(index_parts=True)
+europe["area"] = europe.geometry.area
+europe_main = europe[europe["area"] > 1]
+
+fig, ax = plt.subplots(figsize=(10, 8))
+europe_main.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, color="blue", markersize=5)
+
+bbox = gdf.total_bounds
+ax.set_xlim(bbox[0] - 1, bbox[2] + 1)
+ax.set_ylim(bbox[1] - 1, bbox[3] + 1)
+
+plt.title("Woodland with pH < 6 in Europe")
+plt.tight_layout()
+plt.savefig("test_case_11_plot.png")
+plt.show()
+
+=== Test Case 34: Perform KMeans clustering on the TH_LAT and TH_LONG data to identify 3 clusters and plot them on a map. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df["TH_LAT"] = pd.to_numeric(df["TH_LAT"], errors="coerce")
+df["TH_LONG"] = pd.to_numeric(df["TH_LONG"], errors="coerce")
+df = df.dropna(subset=["TH_LAT", "TH_LONG"])
+
+kmeans = KMeans(n_clusters=3, random_state=0)
+df["Cluster"] = kmeans.fit_predict(df[["TH_LAT", "TH_LONG"]])
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["TH_LONG"], df["TH_LAT"]), crs="EPSG:4326")
+
+world = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+europe = world[world["CONTINENT"] == "Europe"]
+
+fig, ax = plt.subplots(figsize=(10, 8))
+europe.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, column="Cluster", cmap="tab10", markersize=5, legend=True)
+
+plt.title("KMeans Clustering of TH_LAT and TH_LONG (3 Clusters) in Europe")
+plt.tight_layout()
+plt.savefig("plot_kmeans_thlat_thlong_3clusters_europe.png", dpi=300)
+plt.show()
+
+=== Test Case 35: Create a map with markers for all locations where 'K' is above its median value, in Europe. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df["K"] = pd.to_numeric(df["K"], errors="coerce")
+df = df[df["K"].notna()]
+df = df[df["TH_LONG"].notna() & df["TH_LAT"].notna()]
+df = df[df["K"] > df["K"].median()]
+df = df[df["Continent"] == "Europe"]
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["TH_LONG"], df["TH_LAT"]), crs="EPSG:4326")
+
+world = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+europe = world[world["CONTINENT"] == "Europe"]
+bbox = gdf[gdf["Continent"] == "Europe"].total_bounds
+
+fig, ax = plt.subplots(figsize=(10, 8))
+europe.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, color="red", markersize=10)
+ax.set_xlim(bbox[0], bbox[2])
+ax.set_ylim(bbox[1], bbox[3])
+ax.set_title("K > Median (Europe)")
+plt.tight_layout()
+plt.savefig("case3_k_above_median_europe_map.png")
+plt.show()
+
+=== Test Case 36: Generate a heatmap where each point is weighted by 'pH_CaCl2', in Europe. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df = df[df["Country"].isin(["France", "Germany", "Italy", "Netherlands", "Poland", "Spain", "Sweden", "UK"])]
+df = df.dropna(subset=["TH_LONG", "TH_LAT", "pH_CaCl2"])
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["TH_LONG"], df["TH_LAT"]), crs="EPSG:4326")
+
+world = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+europe = world[world["CONTINENT"] == "Europe"]
+
+fig, ax = plt.subplots(figsize=(10, 8))
+europe.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, column="pH_CaCl2", cmap="coolwarm", markersize=5, legend=True)
+ax.set_title("pH_CaCl2 (CaCl2) in Europe")
+plt.tight_layout()
+plt.savefig("plot.png", dpi=300)
+plt.show()
+
+=== Test Case 37: Create a map with markers for points where 'K' is in the top 10 percentile, in Europe. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df["K"] = pd.to_numeric(df["K"], errors="coerce")
+df = df.dropna(subset=["K", "TH_LAT", "TH_LONG"])
+df = df[df["K"].quantile(0.9) <= df["K"]]
+df = df[df["Continent"] == "Europe"]
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["TH_LONG"], df["TH_LAT"]), crs="EPSG:4326")
+
+world = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+europe = world[world["CONTINENT"] == "Europe"].explode(index_parts=True)
+europe["area"] = europe.geometry.area
+europe_mainland = europe[europe["area"] > 1]
+
+fig, ax = plt.subplots(figsize=(10, 8))
+europe_mainland.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, color="red", markersize=10)
+ax.set_title("High K Values in Europe (Top 10%)")
+plt.tight_layout()
+plt.savefig("plot.png", dpi=300)
+plt.show()
+
+=== Test Case 38: Plot the points with 'pH_H2O' > 5 in blue and 'pH_H2O' < 5 in red in Europe. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df["pH_H2O"] = pd.to_numeric(df["pH_H2O"], errors="coerce")
+df = df.dropna(subset=["pH_H2O", "TH_LONG", "TH_LAT"])
+df["pH_category"] = df["pH_H2O"].apply(lambda x: "High" if x > 5 else "Low")
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["TH_LONG"], df["TH_LAT"]), crs="EPSG:4326")
+
+world = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+europe = world[world["CONTINENT"] == "Europe"]
+
+fig, ax = plt.subplots(figsize=(10, 8))
+europe.plot(ax=ax, color="white", edgecolor="black")
+gdf[gdf["pH_category"] == "High"].plot(ax=ax, color="blue", markersize=5, label="pH_H2O > 5")
+gdf[gdf["pH_category"] == "Low"].plot(ax=ax, color="red", markersize=5, label="pH_H2O < 5")
+
+ax.set_xlim(europe.total_bounds[0] - 1, europe.total_bounds[2] + 1)
+ax.set_ylim(europe.total_bounds[1] - 1, europe.total_bounds[3] + 1)
+ax.legend()
+plt.title("pH_H2O > 5 (Blue) vs pH_H2O < 5 (Red) in Europe")
+plt.tight_layout()
+plt.savefig("case3_pH_H2O_categories_europe.png")
+plt.show()
+
+=== Test Case 39: Create a map displaying the distribution of soil types ('LC0_Desc') across Europe. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df = df.dropna(subset=["TH_LAT", "TH_LONG", "LC0_Desc"])
+df["TH_LAT"] = pd.to_numeric(df["TH_LAT"], errors="coerce")
+df["TH_LONG"] = pd.to_numeric(df["TH_LONG"], errors="coerce")
+df = df[df["TH_LAT"].notna() & df["TH_LONG"].notna()]
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["TH_LONG"], df["TH_LAT"]), crs="EPSG:4326")
+
+world = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+europe = world[world["CONTINENT"] == "Europe"]
+
+fig, ax = plt.subplots(figsize=(10, 8))
+europe.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, column="LC0_Desc", cmap="tab20", markersize=5, legend=True)
+ax.set_title("Soil Types (LC0_Desc) Across Europe")
+plt.tight_layout()
+plt.savefig("plot.png", dpi=300)
+plt.show()
+
+=== Test Case 40: Plot all the LC0_Desc = 'Grassland' and LC0_Desc = 'Woodland' points where 'OC' > 20. ===
+```python
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv('LUCAS_with_country_info.csv')
+df = df[(df["LC0_Desc"] == "Grassland") | (df["LC0_Desc"] == "Woodland")]
+df = df[df["OC"] > 20]
+df = df.dropna(subset=["TH_LAT", "TH_LONG"])
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.TH_LONG, df.TH_LAT), crs="EPSG:4326")
+europe = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+country = europe[europe["NAME"].isin(df["Country"].unique())]
+
+fig, ax = plt.subplots(figsize=(10, 8))
+country.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, color="blue", markersize=8)
+ax.set_title("Grassland & Woodland with OC > 20 in Europe")
+plt.show()
+```
+
+=== Test Case 41: Plot all points in Croatia where 'OC' is below 20. ===
+```python
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv('LUCAS_with_country_info.csv')
+df = df[(df["Country"] == "Croatia") & (df["OC"].apply(pd.to_numeric, errors='coerce') < 20)]
+df = df.dropna(subset=["TH_LAT", "TH_LONG"])
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.TH_LONG, df.TH_LAT), crs="EPSG:4326")
+europe = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp")
+country = europe[europe["NAME"] == "Croatia"]
+
+fig, ax = plt.subplots(figsize=(8, 8))
+country.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, color="blue", markersize=8)
+ax.set_title("Croatia - OC < 20")
+plt.show()
+```
+
+=== Test Case 42: Plot all points in Austria where 'pH_CaCl2' > 5 and LC0_Desc is 'Woodland'. ===
+```python
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv('LUCAS_with_country_info.csv')
+df = df[(df["Country"] == "Austria") & (df["pH_CaCl2"] > 5) & (df["LC0_Desc"] == "Woodland")]
+df = df.dropna(subset=["TH_LAT", "TH_LONG"])
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.TH_LONG, df.TH_LAT), crs="EPSG:4326")
+europe = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp")
+country = europe[europe["NAME"] == "Austria"]
+
+fig, ax = plt.subplots(figsize=(8, 8))
+country.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, color="blue", markersize=8)
+ax.set_title("Austria - pH_CaCl2 > 5 & Woodland")
+plt.show()
+```
+
+=== Test Case 43: Plot all the points with LC0_Desc = Grassland in Europe. ===
+```python
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv('LUCAS_with_country_info.csv')
+df = df[(df["LC0_Desc"] == "Grassland") & (df["TH_LONG"].notna()) & (df["TH_LAT"].notna())]
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.TH_LONG, df.TH_LAT), crs="EPSG:4326")
+europe = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+country = europe[europe["NAME"].isin(df["Country"].unique())]
+bbox = country.total_bounds
+
+fig, ax = plt.subplots(figsize=(8, 8))
+country.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, color="green", markersize=5)
+ax.set_xlim(bbox[0], bbox[2])
+ax.set_ylim(bbox[1], bbox[3])
+ax.set_title("Grassland Points in Europe")
+plt.tight_layout()
+plt.savefig("plot.png", dpi=300)
+plt.show()
+```
+
+=== Test Case 44: Plot all points in Slovakia where 'K' is above its 85th percentile. ===
+```python
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv('LUCAS_with_country_info.csv')
+threshold = df["K"].quantile(0.85)
+df = df[(df["Country"] == "Slovakia") & (df["K"] > threshold)]
+df = df.dropna(subset=["TH_LAT", "TH_LONG"])
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.TH_LONG, df.TH_LAT), crs="EPSG:4326")
+europe = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp")
+country = europe[europe["NAME"] == "Slovakia"]
+
+fig, ax = plt.subplots(figsize=(8, 8))
+country.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, color="red", markersize=10)
+ax.set_title("K > 85th Percentile in Slovakia")
+plt.show()
+```
+
+=== Test Case 45: Create a map of Belgium highlighting points where 'pH_H2O' is in the bottom 10 percentile. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df["pH_H2O"] = pd.to_numeric(df["pH_H2O"], errors="coerce")
+df = df.dropna(subset=["pH_H2O", "TH_LONG", "TH_LAT"])
+df["pH_H2O_percentile"] = df["pH_H2O"].rank(method="min", pct=True)
+df = df[df["pH_H2O_percentile"] <= 0.1]
+df = df[df["Country"] == "Belgium"]
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["TH_LONG"], df["TH_LAT"]), crs="EPSG:4326")
+
+world = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+belgium = world[world["NAME"] == "Belgium"]
+belgium_buffer = belgium.buffer(0.1)
+
+fig, ax = plt.subplots(figsize=(8, 8))
+belgium_buffer.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, color="red", markersize=5)
+ax.set_title("Belgium - pH_H2O in Bottom 10 Percentile")
+plt.tight_layout()
+plt.savefig("plot.png", dpi=300)
+plt.show()
+
+=== Test Case 46: Plot all points in Poland where 'OC' > median and color them by LU_DESC. ===
+```python
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv('LUCAS_with_country_info.csv')
+df = df[(df["Country"] == "Poland") & (df["OC"].apply(pd.to_numeric, errors='coerce') > df["OC"].median())]
+df = df.dropna(subset=["TH_LAT", "TH_LONG", "LU_DESC"])
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.TH_LONG, df.TH_LAT), crs="EPSG:4326")
+europe = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp")
+country = europe[europe["NAME"] == "Poland"]
+
+fig, ax = plt.subplots(figsize=(8, 8))
+country.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, column="LU_DESC", cmap="tab20", markersize=10, legend=True)
+ax.set_title("OC > Median in Poland (LU_DESC)")
+plt.show()
+```
+
+=== Test Case 47: Show how land cover categories vary across France on a map. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df = df[df["Country"] == "France"]
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["TH_LONG"], df["TH_LAT"]), crs="EPSG:4326")
+world = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+france = world[world["NAME"] == "France"].explode(index_parts=True)
+france["area"] = france.geometry.area
+france_main = france.sort_values("area", ascending=False).head(1)
+
+fig, ax = plt.subplots(figsize=(8, 8))
+france_main.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, column="LC0_Desc", cmap="tab20", markersize=5, legend=True)
+ax.set_title("Land Cover Categories in France")
+plt.tight_layout()
+plt.savefig("test_case_1_france_land_cover_map.png")
+plt.show()
+
+=== Test Case 48: Perform KMeans clustering on TH_LAT and TH_LONG to identify 4 clusters in Europe and plot them. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df = df[df["TH_LONG"].apply(pd.to_numeric, errors="coerce").notna()]
+df["TH_LONG"] = pd.to_numeric(df["TH_LONG"])
+df = df[df["TH_LAT"].apply(pd.to_numeric, errors="coerce").notna()]
+df["TH_LAT"] = pd.to_numeric(df["TH_LAT"])
+df = df[(df["TH_LAT"] >= 35) & (df["TH_LAT"] <= 72) & (df["TH_LONG"] >= -10) & (df["TH_LONG"] <= 35)]
+
+kmeans = KMeans(n_clusters=4, random_state=0)
+df["cluster"] = kmeans.fit_predict(df[["TH_LAT", "TH_LONG"]])
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["TH_LONG"], df["TH_LAT"]), crs="EPSG:4326")
+
+world = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+europe = world[world["CONTINENT"] == "Europe"]
+
+fig, ax = plt.subplots(figsize=(10, 8))
+europe.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, column="cluster", cmap="tab10", markersize=5, legend=True)
+
+plt.title("KMeans Clustering of TH_LAT and TH_LONG in Europe (4 Clusters)")
+plt.tight_layout()
+plt.savefig("plot.png", dpi=300)
+plt.show()
+
+=== Test Case 49: Perform KMeans clustering on OC and K values and plot the clusters in Spain. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df["OC"] = pd.to_numeric(df["OC"], errors="coerce")
+df["K"] = pd.to_numeric(df["K"], errors="coerce")
+df = df.dropna(subset=["OC", "K", "TH_LONG", "TH_LAT"])
+df["OC"] = df["OC"] * 1000
+
+kmeans = KMeans(n_clusters=4, random_state=0)
+df["Cluster"] = kmeans.fit_predict(df[["OC", "K"]])
+
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["TH_LONG"], df["TH_LAT"]), crs="EPSG:4326")
+
+world = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+spain = world[world["NAME"] == "Spain"].explode(index_parts=True)
+spain["area"] = spain.geometry.area
+spain_main = spain[spain["area"] > 0.1]
+
+fig, ax = plt.subplots(figsize=(8, 8))
+spain_main.plot(ax=ax, color="white", edgecolor="black")
+gdf[gdf["Country"] == "Spain"].plot(ax=ax, column="Cluster", cmap="tab10", markersize=5, legend=True)
+
+ax.set_title("KMeans Clustering on OC and K in Spain")
+plt.tight_layout()
+plt.savefig("plot.png", dpi=300)
+plt.show()
+
+=== Test Case 50: Plot the points in Europe with 'pH_H2O' > 4 in blue and others in red. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df["pH_H2O"] = pd.to_numeric(df["pH_H2O"], errors="coerce")
+df = df.dropna(subset=["TH_LONG", "TH_LAT", "pH_H2O"])
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df["TH_LONG"], df["TH_LAT"]), crs="EPSG:4326")
+
+world = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+europe = world[world["CONTINENT"] == "Europe"].explode(index_parts=True)
+europe["area"] = europe.geometry.area
+europe_mainland = europe[europe["area"] > 1]
+
+fig, ax = plt.subplots(figsize=(10, 8))
+europe_mainland.plot(ax=ax, color="white", edgecolor="black")
+
+high_ph = gdf[gdf["pH_H2O"] > 4]
+low_ph = gdf[gdf["pH_H2O"] <= 4]
+
+high_ph.plot(ax=ax, color="blue", markersize=5, label="pH_H2O > 4")
+low_ph.plot(ax=ax, color="red", markersize=5, label="pH_H2O ≤ 4")
+
+ax.set_xlim(-10, 30)
+ax.set_ylim(35, 72)
+ax.legend()
+plt.title("pH_H2O > 4 in Blue, Others in Red (Europe)")
+plt.tight_layout()
+plt.savefig("case3_pH_H2O_threshold_plot.png")
+plt.show()
+
+=== Test Case 51: Create a map of Italy where each point is colored by its LC0_Desc category. ===
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("LUCAS_with_country_info.csv")
+df = df[df["Country"] == "Italy"]
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.TH_LONG, df.TH_LAT), crs="EPSG:4326")
+world = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+italy = world[world["NAME"] == "Italy"].explode(index_parts=True)
+fig, ax = plt.subplots(figsize=(8, 8))
+italy.plot(ax=ax, color="white", edgecolor="black")
+gdf.plot(ax=ax, column="LC0_Desc", cmap="tab20", markersize=5, legend=True)
+ax.set_title("Land Cover Categories in Italy")
+plt.tight_layout()
+plt.savefig("plot.png", dpi=300)
+plt.show()
+
+=== Test Case 52: Plot all points in Europe where 'K' is below its median value. ===
+```python
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv('LUCAS_with_country_info.csv')
+df = df[(df["K"].apply(pd.to_numeric, errors='coerce')) < df["K"].median()]
+df = df.dropna(subset=["TH_LAT", "TH_LONG"])
+gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.TH_LONG, df.TH_LAT), crs="EPSG:4326")
+europe = gpd.read_file("natural_earth_data/ne_10m_admin_0_countries.shp").to_crs("EPSG:4326")
+country_bounds = europe[europe["CONTINENT"] == "Europe"].bounds
+bbox = country_bounds.iloc[0]
+ax = gdf.plot(markersize=5, color="red", figsize=(8, 8), extent=bbox)
+ax.set_title("Points in Europe with K below median")
+plt.tight_layout()
+plt.savefig("plot.png", dpi=300)
+plt.show()
+```

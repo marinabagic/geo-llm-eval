@@ -1,0 +1,122 @@
+[
+  {
+    "question": "Which land type (LC0_Desc) has the highest 'pH_H2O'?",
+    "code": "import pandas as pd\ndf = pd.read_csv(\"LUCAS.csv\")\nresult = df.groupby('LC0_Desc')['pH_H2O'].mean().idxmax()\nprint(result)"
+  },
+  {
+    "question": "Plot the average 'OC' for each land type (LC0_Desc). Save it as a png.",
+    "code": "import pandas as pd\nimport matplotlib.pyplot as plt\ndf = pd.read_csv('LUCAS.csv')\ndf.groupby('LC0_Desc')['OC'].mean().plot(kind='bar')\nplt.savefig('plot.png')"
+  },
+  {
+    "question": "Calculate the average pH for south EU.",
+    "code": "import pandas as pd\ndf = pd.read_csv('LUCAS.csv')\nsouth_eu = ['PT', 'ES', 'IT', 'GR', 'MT', 'HR', 'SI', 'CY']\nsouth_eu_df = df[df['NUTS_0'].isin(south_eu)]\navg_ph = south_eu_df['pH_H2O'].mean()\nprint(avg_ph)"
+  },
+  {
+    "question": "Calculate the average pH for Austria, from the mentioned csv.",
+    "code": "import pandas as pd\ndata = pd.read_csv('LUCAS.csv')\naustria_pH = data[data['NUTS_0'] == 'AT']['pH_CaCl2'].mean()\nprint(austria_pH)"
+  },
+  {
+    "question": "Calculate the max value of 'N' for Slovenia, from the mentioned csv.",
+    "code": "import pandas as pd\ndata = pd.read_csv('LUCAS.csv')\nslovenia_data = data[data['NUTS_0'] == 'SI']\nmax_n_value = slovenia_data['N'].max()\nprint(max_n_value)"
+  },
+  {
+    "question": "Calculate the summary statistics for all numerical columns in the dataset.",
+    "code": "import pandas as pd\ndf = pd.read_csv('LUCAS.csv')\nsummary = df.describe()\nprint(summary)"
+  },
+  {
+    "question": "Generate a correlation matrix of the dataset and visualize it using a heatmap.",
+    "code": "import seaborn as sns\nimport matplotlib.pyplot as plt\ndf = pd.read_csv('LUCAS.csv')\ncorr_matrix = df.corr()\nsns.heatmap(corr_matrix, annot=True, cmap='coolwarm')\nplt.title('Correlation Matrix')\nplt.show()"
+  },
+  {
+    "question": "Plot the distribution of 'K' with a KDE overlay. Save it as a png.",
+    "code": "import seaborn as sns\nimport matplotlib.pyplot as plt\ndf = pd.read_csv('LUCAS.csv')\nsns.histplot(df['K'], kde=True)\nplt.title('Distribution of K')\nplt.savefig('plot.png')"
+  },
+  {
+    "question": "Calculate the average 'K' for rows where 'EC' is greater than 10.",
+    "code": "import pandas as pd\ndf = pd.read_csv('LUCAS.csv')\ndf_filtered = df[df['EC'] > 10]\navg_K = df_filtered['K'].mean()\nprint(avg_K)"
+  },
+  {
+    "question": "Find the sum of 'K' for each unique value in the 'LC0_Desc' column. Print the result.",
+    "code": "import pandas as pd\ndf = pd.read_csv('LUCAS.csv')\nresult = df.groupby('LC0_Desc')['K'].sum()\nprint(result)"
+  },
+    {
+    "question": "Is there a significant relationship between land type (LC0_Desc) and pH_H2O? Use chi square from scipy.",
+    "code": "import pandas as pd\nfrom scipy.stats import chi2_contingency\n\ndf = pd.read_csv('LUCAS.csv')\ncontingency_table = pd.crosstab(df['LC0_Desc'], df['pH_H2O'])\nchi2, p, _, _ = chi2_contingency(contingency_table)\nprint(\"Chi2:\", chi2)\nprint(\"P-value:\", p)"
+  },
+  {
+    "question": "Is there a significant difference between 'N' in Austria and France? Use ANOVA from scipy.",
+    "code": "import pandas as pd\nfrom scipy.stats import f_oneway\n\nfile_path = 'LUCAS.csv'\ndf = pd.read_csv(file_path)\naustria_N = df[df['NUTS_0'] == 'AT']['N']\nfrance_N = df[df['NUTS_0'] == 'FR']['N']\nanova_result = f_oneway(austria_N.dropna(), france_N.dropna())\nprint(\"F-statistic:\", anova_result.statistic)\nprint(\"p-value:\", anova_result.pvalue)"
+  },
+  {
+    "question": "Which parameter has the strongest correlation with EC among {pH_CaCl2, pH_H2O, OC, CaCO3, P, N, K}?",
+    "code": "import pandas as pd\n\nfile_path = 'LUCAS.csv'\ndf = pd.read_csv(file_path)\nparameters = ['pH_CaCl2', 'pH_H2O', 'OC', 'CaCO3', 'P', 'N', 'K']\ncorrelations = df[parameters + ['EC']].corr()['EC'].drop('EC')\nstrongest_correlation = correlations.idxmax()\ncorrelation_value = correlations.max()\nprint(\"Parameter with the strongest correlation with EC:\", strongest_correlation)\nprint(\"Correlation value:\", correlation_value)"
+  },
+  {
+    "question": "Perform a t-test to compare 'K' between Grassland and Cropland.",
+    "code": "import pandas as pd\nfrom scipy.stats import ttest_ind\n\ndf = pd.read_csv('LUCAS.csv')\nGrassland = df[df['LC0_Desc'] == 'Grassland']['K']\nCropland = df[df['LC0_Desc'] == 'Cropland']['K']\nt_statistic, p_value = ttest_ind(Grassland, Cropland)\nprint(f\"T-statistic: {t_statistic}, p-value: {p_value}\")"
+  },
+  {
+    "question": "Plot a linear regression analysis to see the relationship between 'pH_H2O' and 'K'.",
+    "code": "import pandas as pd\nimport seaborn as sns\nimport matplotlib.pyplot as plt\nfrom sklearn.linear_model import LinearRegression\nimport numpy as np\n\ndf = pd.read_csv('LUCAS.csv')\nX = df[['pH_H2O']].values\ny = df['K'].values\nmodel = LinearRegression()\nmodel.fit(X, y)\nprint(f\"Intercept: {model.intercept_}, Coefficient: {model.coef_[0]}\")\nsns.scatterplot(x='pH_H2O', y='K', data=df)\nplt.plot(df['pH_H2O'], model.predict(X), color='red')\nplt.title('Linear Regression: pH_H2O vs K')\nplt.savefig('linreg.png')"
+  },
+  {
+    "question": "Construct a 95% confidence interval for the mean 'OC' content in the dataset.",
+    "code": "import pandas as pd\nimport scipy.stats as stats\nimport numpy as np\n\ndf = pd.read_csv('LUCAS.csv')\nmean_oc = df['OC'].mean()\nsem_oc = stats.sem(df['OC'], nan_policy='omit')\nconfidence_interval = stats.t.interval(0.95, len(df['OC'].dropna()) - 1, loc=mean_oc, scale=sem_oc)\nprint(\"95% Confidence Interval for mean 'OC':\", confidence_interval)"
+  },
+  {
+    "question": "Using the Central Limit Theorem, simulate the sampling distribution of the mean 'pH_H2O' for sample sizes of 30. Plot the distribution and compare it to the normal distribution.",
+    "code": "import pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n\ndf = pd.read_csv('LUCAS.csv')\nsample_size = 30\nn_simulations = 1000\nsample_means = [df['pH_H2O'].sample(sample_size, replace=True).mean() for _ in range(n_simulations)]\nsns.histplot(sample_means, kde=True, stat='density', color='blue', label='Sample Means')\nsns.kdeplot(np.random.normal(np.mean(sample_means), np.std(sample_means), n_simulations), color='red', label='Normal Distribution')\nplt.xlabel('Mean pH_H2O')\nplt.ylabel('Density')\nplt.title('Sampling Distribution of the Mean pH_H2O')\nplt.legend()\nplt.savefig('plot.png')"
+  },
+  {
+    "question": "Calculate the z-scores for 'EC' and identify any outliers (z-score > 3 or < -3).",
+    "code": "import pandas as pd\nimport scipy.stats as stats\n\ndf = pd.read_csv('LUCAS.csv')\ndf['EC_zscore'] = stats.zscore(df['EC'], nan_policy='omit')\noutliers = df[(df['EC_zscore'] > 3) | (df['EC_zscore'] < -3)]\nprint(outliers[['POINTID', 'EC', 'EC_zscore']])"
+  },
+  {
+    "question": "Perform a hypothesis test to determine if the mean 'K' content in the entire dataset is significantly different from 2%. Use a t-test for the hypothesis test.",
+    "code": "import pandas as pd\nimport scipy.stats as stats\n\ndf = pd.read_csv('LUCAS.csv')\nt_stat, p_value = stats.ttest_1samp(df['K'].dropna(), 2)\nprint(\"T-statistic:\", t_stat)\nprint(\"P-value:\", p_value)"
+  },
+  {
+    "question": "Calculate the p-value for the correlation between 'P' and 'K'. Determine if the correlation is statistically significant.",
+    "code": "import pandas as pd\nimport scipy.stats as stats\n\ndf = pd.read_csv('LUCAS.csv')\ncorrelation_coefficient, p_value = stats.pearsonr(df['P'], df['K'])\nprint(p_value)"
+  },
+  {
+    "question": "Plot all the points that have pH_CaCl2 > 6. Use geopandas. Save the image as a png.",
+    "code": "import geopandas as gpd\nimport matplotlib.pyplot as plt\ngeo_df_path = 'geo_df.gpkg'\ngeo_df = gpd.read_file(geo_df_path)\neurope_shapefile_path = 'europe.gpkg'\neurope_shapefile = gpd.read_file(europe_shapefile_path)\nfiltered_geo_df = geo_df[geo_df['pH_CaCl2'] > 6]\nfig, ax = plt.subplots(figsize=(10, 10))\neurope_shapefile.plot(ax=ax, color='lightgrey')\nfiltered_geo_df.plot(ax=ax, marker='.', color='blue', markersize=5)\nplt.savefig('plot.png')"
+  },
+  {
+    "question": "Plot all the points with LC0_Desc=Woodland in Europe. Save the result as a png. Use geopandas.",
+    "code": "import geopandas as gpd\nimport matplotlib.pyplot as plt\ngeo_df_path = 'geo_df.gpkg'\ngeo_df = gpd.read_file(geo_df_path)\neurope_shapefile_path = 'europe.gpkg'\neurope_shapefile = gpd.read_file(europe_shapefile_path)\nwoodland_geo_df = geo_df[geo_df['LC0_Desc'] == 'Woodland']\nfig, ax = plt.subplots(figsize=(10, 10))\neurope_shapefile.plot(ax=ax, color='lightgrey')\nwoodland_geo_df.plot(ax=ax, marker='.', color='green', markersize=5)\nplt.savefig('plot.png')"
+  },
+  {
+    "question": "Plot all the points with LC0_Desc=Woodland & pH<6 in Europe. Save the result as a png. Use geopandas.",
+    "code": "import geopandas as gpd\nimport matplotlib.pyplot as plt\ngeo_df_path = 'geo_df.gpkg'\ngeo_df = gpd.read_file(geo_df_path)\neurope_shapefile_path = 'europe.gpkg'\neurope_shapefile = gpd.read_file(europe_shapefile_path)\nfiltered_geo_df = geo_df[(geo_df['LC0_Desc'] == 'Woodland') & (geo_df['pH_CaCl2'] < 6)]\nfig, ax = plt.subplots(figsize=(10, 10))\neurope_shapefile.plot(ax=ax, color='lightgrey')\nfiltered_geo_df.plot(ax=ax, marker='.', color='green', markersize=5)\nplt.savefig('woodland ph6.png')"
+  },
+  {
+    "question": "Perform KMeans clustering on the TH_LAT and TH_LONG data to identify 3 clusters and plot them on a map. Save it as a png.",
+    "code": "import pandas as pd\nimport geopandas as gpd\nimport matplotlib.pyplot as plt\nfrom sklearn.cluster import KMeans\ngdf = gpd.read_file('geo_df.gpkg')\nkmeans = KMeans(n_clusters=3)\ngdf['cluster'] = kmeans.fit_predict(gdf[['TH_LAT', 'TH_LONG']])\nplt.figure(figsize=(10, 10))\nbase = gpd.read_file('europe.gpkg')\nbase.plot(ax=plt.gca(), color='white', edgecolor='black')\ngdf.plot(ax=plt.gca(), marker='.', column='cluster', cmap='viridis', legend=True)\nplt.title('KMeans Clustering of GeoDataFrame')\nplt.savefig('clusters.png')"
+  },
+  {
+    "question": "Create a map with markers for all locations where 'K' is above its median value, in Europe. Use geopandas. Save the result as a png.",
+    "code": "import geopandas as gpd\nimport pandas as pd\nimport matplotlib.pyplot as plt\ngeo_df = gpd.read_file('geo_df.gpkg')\neurope_df = gpd.read_file('europe.gpkg')\nmedian_k = geo_df['K'].median()\nlocations = geo_df[geo_df['K'] > median_k]\nfig, ax = plt.subplots(figsize=(10, 10))\neurope_df.plot(ax=ax, color='gray')\nlocations.plot(ax=ax, marker='.', color='red')\nplt.savefig('plot.png')"
+  },
+  {
+    "question": "Generate a heatmap where each point is weighted by 'pH_CaCl2', in Europe. Don't merge these shapefiles just plot them. Use geopandas. Save the result as a png.",
+    "code": "import pandas as pd\nimport geopandas as gpd\nimport matplotlib.pyplot as plt\ngdf = gpd.read_file('geo_df.gpkg')\neurope_shapefile = gpd.read_file('europe.gpkg')\nfig, ax = plt.subplots(figsize=(10, 10))\neurope_shapefile.plot(ax=ax, color='white', edgecolor='black')\ngdf.plot(ax=ax, marker='.', column='pH_CaCl2', cmap='hot', legend=True, markersize=gdf['pH_CaCl2'])\nplt.title('Heatmap of pH_CaCl2 in Europe')\nplt.savefig('plot.png')"
+  },
+  {
+    "question": "Create a map with markers for points where 'K' is in the top 10 percentile, in Europe. Don't merge these shapefiles just plot them. Use geopandas. Save the result as a png.",
+    "code": "import pandas as pd\nimport geopandas as gpd\nimport matplotlib.pyplot as plt\ngdf = gpd.read_file('geo_df.gpkg')\ntop_10_percentile = gdf['K'].quantile(0.90)\ntop_k_points = gdf[gdf['K'] > top_10_percentile]\neurope_shapefile = gpd.read_file('europe.gpkg')\nfig, ax = plt.subplots(figsize=(10, 10))\neurope_shapefile.plot(ax=ax, color='gray', edgecolor='black')\ntop_k_points.plot(ax=ax, marker='.', color='red', markersize=5)\nplt.title('Top 10 Percentile of K Values in Europe')\nplt.savefig('plot.png')"
+  },
+  {
+    "question": "Plot clusters of points with 'pH_H2O'>5 and 'pH_H2O'<5 in Europe.",
+    "code": "import geopandas as gpd\nimport matplotlib.pyplot as plt\ngdf_points = gpd.read_file('geo_df.gpkg')\ngdf_europe = gpd.read_file('europe.gpkg')\nhigh_ph = gdf_points[gdf_points['pH_H2O'] > 5]\nlow_ph = gdf_points[gdf_points['pH_H2O'] < 5]\nfig, ax = plt.subplots(figsize=(10, 10))\ngdf_europe.plot(ax=ax, color='lightgrey', edgecolor='black')\nhigh_ph.plot(ax=ax, marker='.', color='blue', markersize=5, label='pH_H2O > 5')\nlow_ph.plot(ax=ax, marker='.', color='red', markersize=5, label='pH_H2O < 5')\nplt.legend()\nplt.title('Clusters of Points with pH_H2O > 5 and pH_H2O < 5 in Europe')\nplt.savefig('ph_h2o_clusters.png', dpi=300, bbox_inches='tight')"
+  },
+  {
+    "question": "Create a map displaying the distribution of soil types ('LC0_Desc') across Europe. Each soil type should be represented by a different color. Use geopandas and save the map as a png.",
+    "code": "import geopandas as gpd\nimport matplotlib.pyplot as plt\ndf = gpd.read_file('geo_df.gpkg')\neurope = gpd.read_file('europe.gpkg')\nfig, ax = plt.subplots(figsize=(10,10))\neurope.plot(ax=ax, color='lightblue', edgecolor='black')\ndf.plot(ax=ax, column='LC0_Desc', categorical=True, markersize=5, marker='.', legend=True)\nplt.savefig('soil_types_map.png')"
+  },
+  {
+    "question": "Plot all the LC0_Desc='Grassland' and LC0_Desc='Woodland' points where 'OC'>20. Use geopandas and save the map as a png.",
+    "code": "import geopandas as gpd\nimport matplotlib.pyplot as plt\ngeo_dataframe = gpd.read_file('geo_df.gpkg')\neurope_shapefile = gpd.read_file('europe.gpkg')\nfiltered_geo_dataframe = geo_dataframe[(geo_dataframe['LC0_Desc'] == 'Grassland') | (geo_dataframe['LC0_Desc'] == 'Woodland')]\nfiltered_geo_dataframe = filtered_geo_dataframe[filtered_geo_dataframe['OC'] > 20]\nfig, ax = plt.subplots(figsize=(10, 10))\neurope_shapefile.plot(ax=ax, color='gray')\nfiltered_geo_dataframe.plot(ax=ax, marker='.', color='red')\nplt.savefig('plot.png')"
+  }
+]

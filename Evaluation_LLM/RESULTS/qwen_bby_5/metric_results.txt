@@ -1,0 +1,6 @@
+Average Scores:
+BLEU:        0.2470
+METEOR:      0.5184
+ROUGE-L:     0.5455
+Levenshtein: 0.3481
+CodeBERT:    0.9836

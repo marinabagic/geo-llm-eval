@@ -1,0 +1,274 @@
+=== CODE GENERATION ===
+
+=== Processing Test Example 1/30 ===
+Question: Which general land cover class has the highest average soil pH in water?
+Generating code (Attempt 1)...
+Saved to generated/generated_1.py
+
+=== Processing Test Example 2/30 ===
+Question: Plot average organic carbon content (0-20 cm) by general land cover type
+Generating code (Attempt 1)...
+Saved to generated/generated_2.py
+
+=== Processing Test Example 3/30 ===
+Question: Compare nitrogen content between Austria and France using a t-test
+Generating code (Attempt 1)...
+Saved to generated/generated_3.py
+
+=== Processing Test Example 4/30 ===
+Question: Plot histogram of phosphorus content with KDE
+Generating code (Attempt 1)...
+Saved to generated/generated_4.py
+
+=== Processing Test Example 5/30 ===
+Question: Print average pH in calcium chloride for southern European countries
+Generating code (Attempt 1)...
+Saved to generated/generated_5.py
+
+=== Processing Test Example 6/30 ===
+Question: Plot correlation matrix heatmap
+Generating code (Attempt 1)...
+Saved to generated/generated_6.py
+
+=== Processing Test Example 7/30 ===
+Question: Print out top 3 regions (NUTS_2) with highest potassium
+Generating code (Attempt 1)...
+Saved to generated/generated_7.py
+
+=== Processing Test Example 8/30 ===
+Question: Make boxplot of EC grouped by land use class
+Generating code (Attempt 1)...
+Saved to generated/generated_8.py
+
+=== Processing Test Example 9/30 ===
+Question: Using ANOVA calcuate if organic carbon content differs by land cover
+Generating code (Attempt 1)...
+Saved to generated/generated_9.py
+
+=== Processing Test Example 10/30 ===
+Question: Plot regression plot of pH in water vs potassium
+Generating code (Attempt 1)...
+Saved to generated/generated_10.py
+
+=== Processing Test Example 11/30 ===
+Question: Calculate Z-score outliers for EC
+Generating code (Attempt 1)...
+You seem to be using the pipelines sequentially on GPU. In order to maximize efficiency please use a dataset
+Saved to generated/generated_11.py
+
+=== Processing Test Example 12/30 ===
+Question: Calcuate confidence interval for mean organic carbon
+Generating code (Attempt 1)...
+Saved to generated/generated_12.py
+
+=== Processing Test Example 13/30 ===
+Question: Plot histogram of carbonate content (0-20cm)
+Generating code (Attempt 1)...
+Saved to generated/generated_13.py
+
+=== Processing Test Example 14/30 ===
+Question: Calcuate average nitrogen per general land cover class
+Generating code (Attempt 1)...
+Saved to generated/generated_14.py
+
+=== Processing Test Example 15/30 ===
+Question: Plot sampling distribution of mean pH in water (n=30, 1000 samples)
+Generating code (Attempt 1)...
+Saved to generated/generated_15.py
+
+=== Processing Test Example 16/30 ===
+Question: Plot all soil sample points on Europe map
+Generating code (Attempt 1)...
+Saved to generated/generated_16.py
+
+=== Processing Test Example 17/30 ===
+Question: Plot only points with pH in CaCl2 > 6 on Europe map
+Generating code (Attempt 1)...
+Saved to generated/generated_17.py
+
+=== Processing Test Example 18/30 ===
+Question: Plot all Woodland areas on Europe map
+Generating code (Attempt 1)...
+Saved to generated/generated_18.py
+
+=== Processing Test Example 19/30 ===
+Question: Plot all Woodland areas with ph in water < 6 on Europe map
+Generating code (Attempt 1)...
+Saved to generated/generated_19.py
+
+=== Processing Test Example 20/30 ===
+Question: Plot all points where organic carbon content > 20 in Grassland or Woodland
+Generating code (Attempt 1)...
+Saved to generated/generated_20.py
+
+=== Processing Test Example 21/30 ===
+Question: Plot top 10% of potassium values on Europe map
+Generating code (Attempt 1)...
+Saved to generated/generated_21.py
+
+=== Processing Test Example 22/30 ===
+Question: Plot points with electrical conductivity larger than 50 on Europe map
+Generating code (Attempt 1)...
+Saved to generated/generated_22.py
+
+=== Processing Test Example 23/30 ===
+Question: Plot the sampling locations colored by detailed land cover category on Europe map
+Generating code (Attempt 1)...
+Saved to generated/generated_23.py
+
+=== Processing Test Example 24/30 ===
+Question: Plot the heatmap of ph values in water on Europe map
+Generating code (Attempt 1)...
+Saved to generated/generated_24.py
+
+=== Processing Test Example 25/30 ===
+Question: Plot all nitrogen outlier (N > 4)
+Generating code (Attempt 1)...
+Saved to generated/generated_25.py
+
+=== Processing Test Example 26/30 ===
+Question: Plot all the points where organic carbon content is available
+Generating code (Attempt 1)...
+Saved to generated/generated_26.py
+
+=== Processing Test Example 27/30 ===
+Question: Plot the grassland vs cropland locations on Europe map
+Generating code (Attempt 1)...
+Saved to generated/generated_27.py
+
+=== Processing Test Example 28/30 ===
+Question: Plot the spruce vs pine dominated forests on Europe map
+Generating code (Attempt 1)...
+Saved to generated/generated_28.py
+
+=== Processing Test Example 29/30 ===
+Question: Plot the points where the carbon to nitrogen ratio is greater than 10
+Generating code (Attempt 1)...
+Saved to generated/generated_29.py
+
+=== Processing Test Example 30/30 ===
+Question: Make 3 clusters of coordinates (make 3 clusters) and plot them on Europe map
+Generating code (Attempt 1)...
+Saved to generated/generated_30.py
+
+
+=== RENAMING & EXECUTING ===
+
+Executing generated_1.py (plot → plots/plot1.png)
+Water
+Execution successful.
+
+Executing generated_2.py (plot → plots/plot2.png)
+Execution failed: 'TH_LONG'
+
+Executing generated_3.py (plot → plots/plot3.png)
+T-statistic: nan, p-value: nan
+Execution successful.
+
+Executing generated_4.py (plot → plots/plot4.png)
+Renamed plot4.png → plot4.png
+Execution successful.
+
+Executing generated_5.py (plot → plots/plot5.png)
+6.498798489529695
+Execution successful.
+
+Executing generated_6.py (plot → plots/plot6.png)
+Execution failed: could not convert string to float: '0-20 cm'
+
+Executing generated_7.py (plot → plots/plot7.png)
+Execution failed: agg function failed [how->mean,dtype->object]
+
+Executing generated_8.py (plot → plots/plot8.png)
+Execution failed: name 'sns' is not defined
+
+Executing generated_9.py (plot → plots/plot9.png)
+ANOVA F-statistic: nan
+ANOVA P-value: nan
+Renamed plot9.png → plot9.png
+Execution successful.
+
+Executing generated_10.py (plot → plots/plot10.png)
+Execution failed: Input X contains NaN.
+LinearRegression does not accept missing values encoded as NaN natively. For supervised learning, you might want to consider sklearn.ensemble.HistGradientBoostingClassifier and Regressor which accept missing values encoded as NaNs natively. Alternatively, it is possible to preprocess the data, for instance by using an imputer transformer in a pipeline or drop samples with missing values. See https://scikit-learn.org/stable/modules/impute.html You can find a list of all estimators that handle NaN values at the following page: https://scikit-learn.org/stable/modules/impute.html#estimators-that-handle-nan-values
+
+Executing generated_11.py (plot → plots/plot11.png)
+Execution failed: name 'plt' is not defined
+
+Executing generated_12.py (plot → plots/plot12.png)
+Execution failed: can only concatenate str (not "int") to str
+
+Executing generated_13.py (plot → plots/plot13.png)
+Renamed plot13.png → plot13.png
+Execution successful.
+
+Executing generated_14.py (plot → plots/plot14.png)
+Execution failed: agg function failed [how->mean,dtype->object]
+
+Executing generated_15.py (plot → plots/plot15.png)
+Renamed plot15.png → plot15.png
+Execution successful.
+
+Executing generated_16.py (plot → plots/plot16.png)
+Renamed plot16.png → plot16.png
+Execution successful.
+
+Executing generated_17.py (plot → plots/plot17.png)
+Renamed plot17.png → plot17.png
+Execution successful.
+
+Executing generated_18.py (plot → plots/plot18.png)
+Renamed plot18.png → plot18.png
+Execution successful.
+
+Executing generated_19.py (plot → plots/plot19.png)
+Renamed plot19.png → plot19.png
+Execution successful.
+
+Executing generated_20.py (plot → plots/plot20.png)
+Renamed plot20.png → plot20.png
+Execution successful.
+
+Executing generated_21.py (plot → plots/plot21.png)
+Renamed plot21.png → plot21.png
+Execution successful.
+
+Executing generated_22.py (plot → plots/plot22.png)
+Renamed plot22.png → plot22.png
+Execution successful.
+
+Executing generated_23.py (plot → plots/plot23.png)
+Renamed plot23.png → plot23.png
+Execution successful.
+
+Executing generated_24.py (plot → plots/plot24.png)
+Renamed plot24.png → plot24.png
+Execution successful.
+
+Executing generated_25.py (plot → plots/plot25.png)
+Renamed plot25.png → plot25.png
+Execution successful.
+
+Executing generated_26.py (plot → plots/plot26.png)
+Renamed plot26.png → plot26.png
+Execution successful.
+
+Executing generated_27.py (plot → plots/plot27.png)
+Renamed plot27.png → plot27.png
+Execution successful.
+
+Executing generated_28.py (plot → plots/plot28.png)
+Renamed plot28.png → plot28.png
+Execution successful.
+
+Executing generated_29.py (plot → plots/plot29.png)
+Renamed plot29.png → plot29.png
+Execution successful.
+
+Executing generated_30.py (plot → plots/plot30.png)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+        - Avoid using `tokenizers` before the fork if possible
+        - Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+Renamed plot30.png → plot30.png
+Execution successful.

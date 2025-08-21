@@ -1,0 +1,76 @@
+#MOJI STARI SA POCETKA
+    "Show all forest areas (LC0_Desc = 'Woodland') where potassium (K) is in the top 10 percent and elevation is above 500 meters.",
+    "Plot all locations where soil has more than 20 percent organic carbon (OC) and the pH_H2O value is greater than 6.",
+    "Create a heatmap showing electrical conductivity (EC) values across Europe.",
+    "Display all points where the amount of Ox_Al is greater than Ox_Fe.",
+    "Show all grassland locations (LC0_Desc = 'Grassland') where nitrogen (N) is above 2 and phosphorus (P) is not below detection limit.",
+    "Visualize all locations where CaCO3 is less than 1 and pH_CaCl2 is under 5.5  (possible acidified soils).",
+    "Compare woodland and cropland areas by showing their average pH_H2O values on a map.",
+    "Plot all grassland locations where phosphorus (P) is missing (marked as '< LOD').",
+    "Highlight all locations sampled in July 2018, using different colors based on LC0_Desc.",
+    "Create a clustered map of soil types based on organic carbon (OC) and CaCO3 values.",
+
+
+    # Basic spatial filters
+    "Plot all points in Croatia where 'OC' is below 20.",
+    "Plot all points in Austria where 'pH_CaCl2' > 5 and LC0_Desc is 'Woodland'.",
+
+    # Europe-wide categorical filter
+    "Plot all the points with LC0_Desc = Grassland in Europe.",
+
+    # Statistical filters
+    "Plot all points in Slovakia where 'K' is above its 85th percentile.",
+    "Create a map of Belgium highlighting points where 'pH_H2O' is in the bottom 10 percentile.",
+
+    # Category coloring
+    "Plot all points in Poland where 'OC' > median and color them by LU_DESC.",
+    "Show how land cover categories vary across France on a map.",
+
+    # Clustering tasks (cleaned)
+    "Perform KMeans clustering on TH_LAT and TH_LONG to identify 4 clusters in Europe and plot them.",
+    "Perform KMeans clustering on OC and K values and plot the clusters in Spain.",
+
+    # Custom styling and color logic
+    "Plot the points in Europe with 'pH_H2O' > 4 in blue and others in red.",
+    "Create a map of Italy where each point is colored by its LC0_Desc category.",
+
+    # Europe-wide threshold plot
+    "Plot all points in Europe where 'K' is below its median value.",
+
+    # NEW additions tailored to recent improvements
+    "Plot all points in Spain where 'OC' is above median and LU_DESC is 'Woodland'.",
+    "Map woodland locations in Finland where pH_CaCl2 < 5.",
+    "Visualize all locations in Norway where both 'K' and 'pH_H2O' are above their 70th percentile.",
+    "Highlight areas in Portugal where 'pH_H2O' is greater than 7 and the LU_DESC is 'Artificial land'.",
+    "Show all woodland areas in Finland with OC below its national median.",
+    "Map the points in Belgium where K is below the 25th percentile, colored by LU_DESC.",
+    "Visualize all locations in Ireland where 'pH_CaCl2' is greater than 6 and LC1_Desc is 'Cropland'.",
+    "Display a map of European points with OC above 40 and K above 250.",
+    "Plot all samples in the Netherlands where both pH_H2O and OC are above their medians.",
+    "Create a map showing TH_LAT vs. TH_LONG in Slovakia, colored by K value using a 'plasma' colormap.",
+    "Plot LUCAS points in Europe where LU_DESC is 'Woodland' and pH_H2O is less than 5.5.",
+    "Show pH_CaCl2 values across Norway, using a color gradient from blue to red.",
+    "Visualize all points in Romania with LC0_Desc = 'Shrubland' and OC below 25.",
+    "Map all European points where LC1_Desc is not 'Bare land' and K is in the top 20 percentile.",
+    "Display Polish points where LC1_Desc is 'Artificial land' and pH_H2O is above 6.5.",
+    "Show all land cover types in Estonia and color points by LC0_Desc.",
+    "Perform KMeans clustering using pH_H2O and OC on samples from Croatia and plot the result.",
+    "Plot all locations in Greece where LU_DESC is 'Permanent crops' and OC is above the European median.",
+
+    
+
+    "Show all points in Hungary where 'CaCO3' is greater than 10 and 'LC0_Desc' is 'Cropland'.",
+    "Map the locations in Denmark where 'Ox_Fe' is above its median and 'LU1_Desc' contains 'Forest'.",
+    "Plot the distribution of 'Elev' across Austria, using a color gradient from light blue to dark red.",
+    "Display German samples where 'N' is above 0.3 and 'LC1_Desc' is not 'Artificial land'.",
+    "Visualize European points where 'CaCO3' is less than 5 and 'LU' is equal to 211.",
+    "Show all samples in Lithuania where 'TH_LAT' is greater than 55.5 and 'K' is below the 25th percentile.",
+    "Plot a map of Slovenia with points colored by 'pH_CaCl2', but only for 'Shrubland' in LC1_Desc.",
+    "Display points in Czech Republic where 'NUTS_2' starts with 'CZ' and 'OC' is greater than 30.",
+    "Map the samples in Belgium where 'Ox_Al' is above its 90th percentile, colored by 'LC0_Desc'.",
+    "Highlight all samples in Bulgaria with 'EC' greater than 0.6 and 'LU1_Desc' containing 'Crop'.",
+     "Plot all samples from France where 'LC0_Desc' is 'Cropland'.",
+    "Show the distribution of 'pH_H2O' in Germany using a color scale.",
+    "Display all points in Italy where 'OC' is greater than 20.",
+    "Plot LUCAS samples in Sweden with 'pH_CaCl2' less than 5.5.",
+    "Map all locations in Finland colored by 'LU1_Desc'."

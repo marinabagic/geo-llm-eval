@@ -1,0 +1,369 @@
+=== CODE GENERATION ===
+
+=== Processing Test Example 1/41 ===
+Question: Which general land cover class has the highest average soil pH in water?
+Generating code (Attempt 1)...
+Saved to generated/generated_1.py
+
+=== Processing Test Example 2/41 ===
+Question: Plot average organic carbon content (0-20 cm) by general land cover type
+Generating code (Attempt 1)...
+Saved to generated/generated_2.py
+
+=== Processing Test Example 3/41 ===
+Question: Compare nitrogen content between Austria and France using a t-test
+Generating code (Attempt 1)...
+Saved to generated/generated_3.py
+
+=== Processing Test Example 4/41 ===
+Question: Plot histogram of phosphorus content with KDE
+Generating code (Attempt 1)...
+Saved to generated/generated_4.py
+
+=== Processing Test Example 5/41 ===
+Question: Print average pH in calcium chloride for southern European countries
+Generating code (Attempt 1)...
+Saved to generated/generated_5.py
+
+=== Processing Test Example 6/41 ===
+Question: Plot correlation matrix heatmap
+Generating code (Attempt 1)...
+Saved to generated/generated_6.py
+
+=== Processing Test Example 7/41 ===
+Question: Print out top 3 regions (NUTS_2) with highest potassium
+Generating code (Attempt 1)...
+Saved to generated/generated_7.py
+
+=== Processing Test Example 8/41 ===
+Question: Make boxplot of EC grouped by land use class
+Generating code (Attempt 1)...
+Saved to generated/generated_8.py
+
+=== Processing Test Example 9/41 ===
+Question: Using ANOVA calcuate if organic carbon content differs by land cover
+Generating code (Attempt 1)...
+Saved to generated/generated_9.py
+
+=== Processing Test Example 10/41 ===
+Question: Plot regression plot of pH in water vs potassium
+Generating code (Attempt 1)...
+Saved to generated/generated_10.py
+
+=== Processing Test Example 11/41 ===
+Question: Calculate Z-score outliers for EC
+Generating code (Attempt 1)...
+You seem to be using the pipelines sequentially on GPU. In order to maximize efficiency please use a dataset
+Saved to generated/generated_11.py
+
+=== Processing Test Example 12/41 ===
+Question: Calcuate confidence interval for mean organic carbon
+Generating code (Attempt 1)...
+Saved to generated/generated_12.py
+
+=== Processing Test Example 13/41 ===
+Question: Plot histogram of carbonate content (0-20cm)
+Generating code (Attempt 1)...
+Saved to generated/generated_13.py
+
+=== Processing Test Example 14/41 ===
+Question: Calcuate average nitrogen per general land cover class
+Generating code (Attempt 1)...
+Saved to generated/generated_14.py
+
+=== Processing Test Example 15/41 ===
+Question: Plot sampling distribution of mean pH in water (n=30, 1000 samples)
+Generating code (Attempt 1)...
+Saved to generated/generated_15.py
+
+=== Processing Test Example 16/41 ===
+Question: Plot all soil sample points on Europe map
+Generating code (Attempt 1)...
+Saved to generated/generated_16.py
+
+=== Processing Test Example 17/41 ===
+Question: Plot only points with pH in CaCl2 > 6 on Europe map
+Generating code (Attempt 1)...
+Saved to generated/generated_17.py
+
+=== Processing Test Example 18/41 ===
+Question: Plot all Woodland areas on Europe map
+Generating code (Attempt 1)...
+Saved to generated/generated_18.py
+
+=== Processing Test Example 19/41 ===
+Question: Plot all Woodland areas with ph in water < 6 on Europe map
+Generating code (Attempt 1)...
+Saved to generated/generated_19.py
+
+=== Processing Test Example 20/41 ===
+Question: Plot all points where organic carbon content > 20 in Grassland or Woodland
+Generating code (Attempt 1)...
+Saved to generated/generated_20.py
+
+=== Processing Test Example 21/41 ===
+Question: Plot top 10% of potassium values on Europe map
+Generating code (Attempt 1)...
+Saved to generated/generated_21.py
+
+=== Processing Test Example 22/41 ===
+Question: Plot points with electrical conductivity larger than 50 on Europe map
+Generating code (Attempt 1)...
+Saved to generated/generated_22.py
+
+=== Processing Test Example 23/41 ===
+Question: Plot the sampling locations colored by detailed land cover category on Europe map
+Generating code (Attempt 1)...
+Saved to generated/generated_23.py
+
+=== Processing Test Example 24/41 ===
+Question: Plot the heatmap of ph values in water on Europe map
+Generating code (Attempt 1)...
+Saved to generated/generated_24.py
+
+=== Processing Test Example 25/41 ===
+Question: Plot all nitrogen outlier (N > 4)
+Generating code (Attempt 1)...
+Saved to generated/generated_25.py
+
+=== Processing Test Example 26/41 ===
+Question: Plot all the points where organic carbon content is available
+Generating code (Attempt 1)...
+Saved to generated/generated_26.py
+
+=== Processing Test Example 27/41 ===
+Question: Plot the grassland vs cropland locations on Europe map
+Generating code (Attempt 1)...
+Saved to generated/generated_27.py
+
+=== Processing Test Example 28/41 ===
+Question: Plot the spruce vs pine dominated forests on Europe map
+Generating code (Attempt 1)...
+Saved to generated/generated_28.py
+
+=== Processing Test Example 29/41 ===
+Question: Plot the points where the carbon to nitrogen ratio is greater than 10
+Generating code (Attempt 1)...
+Saved to generated/generated_29.py
+
+=== Processing Test Example 30/41 ===
+Question: Make 3 clusters of coordinates (make 3 clusters) and plot them on Europe map
+Generating code (Attempt 1)...
+Saved to generated/generated_30.py
+
+=== Processing Test Example 31/41 ===
+Question: Plot all points in Croatia where 'OC' is below 20.
+Generating code (Attempt 1)...
+Saved to generated/generated_31.py
+
+=== Processing Test Example 32/41 ===
+Question: Plot all points in Austria where 'pH_CaCl2' > 5 and LC0_Desc is 'Woodland'.
+Generating code (Attempt 1)...
+Saved to generated/generated_32.py
+
+=== Processing Test Example 33/41 ===
+Question: Highlight all locations sampled in July 2018, using different colors based on LC0_Desc.
+Generating code (Attempt 1)...
+Saved to generated/generated_33.py
+
+=== Processing Test Example 34/41 ===
+Question: Plot all points in Slovakia where 'K' is above its 85th percentile.
+Generating code (Attempt 1)...
+Saved to generated/generated_34.py
+
+=== Processing Test Example 35/41 ===
+Question: Create a map of Belgium highlighting points where 'pH_H2O' is in the bottom 10 percentile.
+Generating code (Attempt 1)...
+Saved to generated/generated_35.py
+
+=== Processing Test Example 36/41 ===
+Question: Plot all points in Poland where 'OC' > median and color them by LU_DESC.
+Generating code (Attempt 1)...
+Saved to generated/generated_36.py
+
+=== Processing Test Example 37/41 ===
+Question: Show how land cover categories vary across France on a map.
+Generating code (Attempt 1)...
+Saved to generated/generated_37.py
+
+=== Processing Test Example 38/41 ===
+Question: Display all points located within 100 km of London and color them by LC0_Desc.
+Generating code (Attempt 1)...
+Saved to generated/generated_38.py
+
+=== Processing Test Example 39/41 ===
+Question: Perform KMeans clustering on OC and K values and plot the clusters in Spain.
+Generating code (Attempt 1)...
+Saved to generated/generated_39.py
+
+=== Processing Test Example 40/41 ===
+Question: Compute the average 'pH_H2O' per NUTS2 region in Germany and show it on a choropleth map.
+Generating code (Attempt 1)...
+Saved to generated/generated_40.py
+
+=== Processing Test Example 41/41 ===
+Question: Create a map of Italy where each point is colored by its LC0_Desc category.
+Generating code (Attempt 1)...
+Saved to generated/generated_41.py
+
+
+=== RENAMING & EXECUTING ===
+
+Executing generated_1.py (plot → plots/plot1.png)
+Water
+Execution successful.
+
+Executing generated_2.py (plot → plots/plot2.png)
+Renamed plot2.png → plot2.png
+Execution successful.
+
+Executing generated_3.py (plot → plots/plot3.png)
+Execution failed: ['Country']
+
+Executing generated_4.py (plot → plots/plot4.png)
+Execution failed: name 'stats' is not defined
+
+Executing generated_5.py (plot → plots/plot5.png)
+6.498798489529695
+Execution successful.
+
+Executing generated_6.py (plot → plots/plot6.png)
+Renamed plot6.png → plot6.png
+Execution successful.
+
+Executing generated_7.py (plot → plots/plot7.png)
+NUTS_2
+MT00    982.900000
+ITF3    820.625000
+ITF4    774.836458
+Name: K, dtype: float64
+Execution successful.
+
+Executing generated_8.py (plot → plots/plot8.png)
+Execution failed: ['LU_DESC']
+
+Executing generated_9.py (plot → plots/plot9.png)
+Execution failed: agg function failed [how->mean,dtype->object]
+
+Executing generated_10.py (plot → plots/plot10.png)
+Renamed plot10.png → plot10.png
+Execution successful.
+
+Executing generated_11.py (plot → plots/plot11.png)
+Renamed plot11.png → plot11.png
+Execution successful.
+
+Executing generated_12.py (plot → plots/plot12.png)
+Execution failed: module 'pandas' has no attribute 'read_file'
+
+Executing generated_13.py (plot → plots/plot13.png)
+Renamed plot13.png → plot13.png
+Execution successful.
+
+Executing generated_14.py (plot → plots/plot14.png)
+Execution failed: agg function failed [how->mean,dtype->object]
+
+Executing generated_15.py (plot → plots/plot15.png)
+Renamed plot15.png → plot15.png
+Execution successful.
+
+Executing generated_16.py (plot → plots/plot16.png)
+Renamed plot16.png → plot16.png
+Execution successful.
+
+Executing generated_17.py (plot → plots/plot17.png)
+Renamed plot17.png → plot17.png
+Execution successful.
+
+Executing generated_18.py (plot → plots/plot18.png)
+Renamed plot18.png → plot18.png
+Execution successful.
+
+Executing generated_19.py (plot → plots/plot19.png)
+Renamed plot19.png → plot19.png
+Execution successful.
+
+Executing generated_20.py (plot → plots/plot20.png)
+Renamed plot20.png → plot20.png
+Execution successful.
+
+Executing generated_21.py (plot → plots/plot21.png)
+Renamed plot21.png → plot21.png
+Execution successful.
+
+Executing generated_22.py (plot → plots/plot22.png)
+Renamed plot22.png → plot22.png
+Execution successful.
+
+Executing generated_23.py (plot → plots/plot23.png)
+Renamed plot23.png → plot23.png
+Execution successful.
+
+Executing generated_24.py (plot → plots/plot24.png)
+Renamed plot24.png → plot24.png
+Execution successful.
+
+Executing generated_25.py (plot → plots/plot25.png)
+Renamed plot25.png → plot25.png
+Execution successful.
+
+Executing generated_26.py (plot → plots/plot26.png)
+Renamed plot26.png → plot26.png
+Execution successful.
+
+Executing generated_27.py (plot → plots/plot27.png)
+Renamed plot27.png → plot27.png
+Execution successful.
+
+Executing generated_28.py (plot → plots/plot28.png)
+Renamed plot28.png → plot28.png
+Execution successful.
+
+Executing generated_29.py (plot → plots/plot29.png)
+Renamed plot29.png → plot29.png
+Execution successful.
+
+Executing generated_30.py (plot → plots/plot30.png)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+        - Avoid using `tokenizers` before the fork if possible
+        - Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+Renamed plot30.png → plot30.png
+Execution successful.
+
+Executing generated_31.py (plot → plots/plot31.png)
+Execution failed: 'NAME'
+
+Executing generated_32.py (plot → plots/plot32.png)
+Renamed plot32.png → plot32.png
+Execution successful.
+
+Executing generated_33.py (plot → plots/plot33.png)
+Execution failed: name 'ax' is not defined
+
+Executing generated_34.py (plot → plots/plot34.png)
+Execution failed: 'NAME'
+
+Executing generated_35.py (plot → plots/plot35.png)
+Execution failed: 'NAME'
+
+Executing generated_36.py (plot → plots/plot36.png)
+Execution failed: 'LU_DESC'
+
+Executing generated_37.py (plot → plots/plot37.png)
+Renamed plot37.png → plot37.png
+Execution successful.
+
+Executing generated_38.py (plot → plots/plot38.png)
+Execution failed: name 'Point' is not defined
+
+Executing generated_39.py (plot → plots/plot39.png)
+Renamed plot39.png → plot39.png
+Execution successful.
+
+Executing generated_40.py (plot → plots/plot40.png)
+Execution failed: Assigning CRS to a GeoDataFrame without a geometry column is not supported. Supply geometry using the 'geometry=' keyword argument, or by providing a DataFrame with column name 'geometry'
+
+Executing generated_41.py (plot → plots/plot41.png)
+Renamed plot41.png → plot41.png
+Execution successful.

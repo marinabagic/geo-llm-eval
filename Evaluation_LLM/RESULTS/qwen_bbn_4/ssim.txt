@@ -1,0 +1,38 @@
+Missing file for example 29
+Missing file for example 36
+
+--- Per-Example Metrics ---
+    example    SSIM   PSNR  HashDiff
+0        16  0.7716  14.00         4
+1        17  0.7664  14.75        10
+2        18  0.8220  15.96        21
+3        19  0.9625  23.51         0
+4        20  0.7116  12.67        25
+5        21  0.7074  13.41        20
+6        24  0.8048  12.78        18
+7        31  0.9693  20.04        10
+8        32  0.9016  18.47        13
+9        33  0.6565  12.25        24
+10       34  0.9718  19.99        16
+11       35  0.8636  16.80        29
+12       37  0.7214  16.41        32
+13       38  0.8155  16.88        23
+14       39  0.8872  18.96         2
+15       40  0.6953  11.61        15
+16       41  0.9754  23.69         3
+
+Model: qwen_bbn_4
+Generated: 17/19
+Missing examples: [29, 36]
+
+--- Unpenalized Averages (only generated plots) ---
+SSIM         0.823759
+PSNR        16.598824
+HashDiff    15.588235
+dtype: float64
+
+--- Penalized Averages (missing = worst score) ---
+SSIM         0.737047
+PSNR        14.851579
+HashDiff    20.684211
+dtype: float64

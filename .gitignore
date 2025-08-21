@@ -1,0 +1,21 @@
+# Secrets
+_secret_quarantine/
+.env
+*.env
+ECHO is on.
+# General
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
+ECHO is on.
+# VSCode
+.vscode/
+ECHO is on.
+# Python
+__pycache__/
+*.pyc
+.venv/
+ECHO is on.
+# Jupyter
+.ipynb_checkpoints/

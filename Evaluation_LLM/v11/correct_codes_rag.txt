@@ -1,0 +1,311 @@
+# 1. Which general land cover class has the highest average soil pH in water?
+import pandas as pd
+df = pd.read_csv("LUCAS.csv")
+result = df.groupby('LC0_Desc')['pH_H2O'].mean().idxmax()
+print("Land cover with highest average pH_H2O:", result)
+
+# 2. Plot average organic carbon content (0-20 cm) by general land cover type
+import pandas as pd
+import matplotlib.pyplot as plt
+df = pd.read_csv("LUCAS.csv")
+df.groupby('LC0_Desc')['OC'].mean().plot(kind='bar')
+plt.ylabel('Organic Carbon (g/kg)')
+plt.title('Average OC by Land Cover Type')
+plt.tight_layout()
+plt.savefig('oc_by_landcover.png')
+
+# 3. Compare nitrogen content between Austria and France using a t-test
+import pandas as pd
+from scipy.stats import ttest_ind
+df = pd.read_csv("LUCAS.csv")
+at_n = df[df['NUTS_0'] == 'AT']['N']
+fr_n = df[df['NUTS_0'] == 'FR']['N']
+t_stat, p_val = ttest_ind(at_n.dropna(), fr_n.dropna())
+print("T-statistic:", t_stat, "P-value:", p_val)
+
+# 4. Plot histogram of phosphorus content with KDE
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+df = pd.read_csv("LUCAS.csv")
+sns.histplot(df['P'], kde=True)
+plt.title('Distribution of Phosphorus')
+plt.savefig('phosphorus_dist.png')
+
+# 5. Print average pH in calcium chloride for southern European countries
+import pandas as pd
+df = pd.read_csv("LUCAS.csv")
+south = ['PT', 'ES', 'IT', 'GR', 'MT', 'HR', 'SI', 'CY']
+mean_ph = df[df['NUTS_0'].isin(south)]['pH_CaCl2'].mean()
+print("Average pH_CaCl2 in Southern EU:", mean_ph)
+
+# 6. Plot correlation matrix heatmap
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+df = pd.read_csv("LUCAS.csv")
+sns.heatmap(df.corr(numeric_only=True), annot=True, cmap='coolwarm')
+plt.title('Correlation Matrix')
+plt.savefig('correlation_matrix.png')
+
+# 7. Print out top 3 regions (NUTS_2) with highest potassium
+import pandas as pd
+df = pd.read_csv("LUCAS.csv")
+top_k = df.groupby('NUTS_2')['K'].mean().nlargest(3)
+print(top_k)
+
+# 8. Make boxplot of EC grouped by land use class
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+df = pd.read_csv("LUCAS.csv")
+sns.boxplot(data=df, x='LU1_Desc', y='EC')
+plt.xticks(rotation=45)
+plt.title('Electrical Conductivity by Land Use')
+plt.tight_layout()
+plt.savefig('ec_by_landuse.png')
+
+# 9. Using ANOVA calcuate if organic carbon content differs by land cover
+import pandas as pd
+from scipy.stats import f_oneway
+df = pd.read_csv("LUCAS.csv")
+groups = [g['OC'].dropna() for _, g in df.groupby('LC0_Desc')]
+f_stat, p_val = f_oneway(*groups)
+print("F-statistic:", f_stat, "P-value:", p_val)
+
+# 10. Plot regression plot of pH in water vs potassium
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+df = pd.read_csv("LUCAS.csv")
+sns.lmplot(data=df, x='pH_H2O', y='K')
+plt.title('Linear Regression: pH_H2O vs K')
+plt.savefig('ph_vs_k.png')
+
+# 11. Calculate Z-score outliers for EC
+import pandas as pd
+import scipy.stats as stats
+df = pd.read_csv("LUCAS.csv")
+df['EC_z'] = stats.zscore(df['EC'], nan_policy='omit')
+outliers = df[(df['EC_z'] > 3) | (df['EC_z'] < -3)]
+print(outliers[['POINTID', 'EC', 'EC_z']])
+
+# 12. Calcuate confidence interval for mean organic carbon
+import pandas as pd
+import scipy.stats as stats
+df = pd.read_csv("LUCAS.csv")
+mean_oc = df['OC'].mean()
+sem = stats.sem(df['OC'], nan_policy='omit')
+ci = stats.t.interval(0.95, len(df['OC'].dropna())-1, loc=mean_oc, scale=sem)
+print("95% CI for mean OC:", ci)
+
+# 13. Plot histogram of carbonate content (0-20cm)
+import pandas as pd
+import matplotlib.pyplot as plt
+df = pd.read_csv("LUCAS.csv")
+df['CaCO3'] = pd.to_numeric(df['CaCO3'], errors='coerce')
+df['CaCO3'].dropna().plot(kind='hist', bins=30)
+plt.title('Histogram of Carbonate Content (0-20 cm)')
+plt.xlabel('CaCO3 (g/kg)')
+plt.savefig('caco3_hist.png')
+
+# 14. Calcuate average nitrogen per general land cover class
+import pandas as pd
+df = pd.read_csv("LUCAS.csv")
+result = df.groupby('LC0_Desc')['N'].mean()
+print(result)
+
+# 15. Plot sampling distribution of mean pH in water (n=30, 1000 samples)
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+df = pd.read_csv("LUCAS.csv")
+means = [df['pH_H2O'].dropna().sample(30).mean() for _ in range(1000)]
+sns.histplot(means, kde=True, stat='density')
+plt.title('Sampling Distribution of Mean pH_H2O (n=30)')
+plt.savefig('sampling_ph.png')
+
+# 16. Plot all soil sample points on Europe map
+import geopandas as gpd
+import matplotlib.pyplot as plt
+geo_df = gpd.read_file("geo_df.gpkg")
+europe = gpd.read_file("europe.gpkg")
+fig, ax = plt.subplots(figsize=(10, 10))
+europe.plot(ax=ax, color='lightgray')
+geo_df.plot(ax=ax, marker='.', color='black', markersize=2)
+plt.title('All Soil Sampling Points')
+plt.savefig('map_all_points.png')
+
+# 17. Plot only points with pH in CaCl2 > 6 on Europe map
+import geopandas as gpd
+import matplotlib.pyplot as plt
+geo_df = gpd.read_file("geo_df.gpkg")
+europe = gpd.read_file("europe.gpkg")
+filtered = geo_df[geo_df['pH_CaCl2'] > 6]
+fig, ax = plt.subplots(figsize=(10, 10))
+europe.plot(ax=ax, color='lightgray')
+filtered.plot(ax=ax, color='blue', markersize=3)
+plt.title('Points with pH_CaCl2 > 6')
+plt.savefig('map_ph_gt6.png')
+
+# 18. Plot all Woodland areas on Europe map
+import geopandas as gpd
+import matplotlib.pyplot as plt
+geo_df = gpd.read_file("geo_df.gpkg")
+europe = gpd.read_file("europe.gpkg")
+woodland = geo_df[geo_df['LC0_Desc'] == 'Woodland']
+fig, ax = plt.subplots(figsize=(10, 10))
+europe.plot(ax=ax, color='lightgray')
+woodland.plot(ax=ax, color='green', markersize=3)
+plt.title('Woodland Points')
+plt.savefig('map_woodland.png')
+
+# 19. Plot all Woodland areas with ph in water < 6 on Europe map
+import geopandas as gpd
+import matplotlib.pyplot as plt
+geo_df = gpd.read_file("geo_df.gpkg")
+europe = gpd.read_file("europe.gpkg")
+subset = geo_df[(geo_df['LC0_Desc'] == 'Woodland') & (geo_df['pH_H2O'] < 6)]
+fig, ax = plt.subplots(figsize=(10, 10))
+europe.plot(ax=ax, color='gray')
+subset.plot(ax=ax, color='darkgreen', markersize=3)
+plt.title('Woodland with pH_H2O < 6')
+plt.savefig('map_woodland_ph_lt6.png')
+
+# 20. Plot all points where organic carbon content > 20 in Grassland or Woodland
+import geopandas as gpd
+import matplotlib.pyplot as plt
+geo_df = gpd.read_file("geo_df.gpkg")
+europe = gpd.read_file("europe.gpkg")
+filtered = geo_df[((geo_df['LC0_Desc'] == 'Grassland') | (geo_df['LC0_Desc'] == 'Woodland')) & (geo_df['OC'] > 20)]
+fig, ax = plt.subplots(figsize=(10, 10))
+europe.plot(ax=ax, color='lightgray')
+filtered.plot(ax=ax, color='red', markersize=3)
+plt.title('OC > 20 in Grassland/Woodland')
+plt.savefig('map_oc_gt20.png')
+
+# 21. Plot top 10% of potassium values on Europe map
+import geopandas as gpd
+import matplotlib.pyplot as plt
+geo_df = gpd.read_file("geo_df.gpkg")
+europe = gpd.read_file("europe.gpkg")
+threshold = geo_df['K'].quantile(0.9)
+filtered = geo_df[geo_df['K'] > threshold]
+fig, ax = plt.subplots(figsize=(10, 10))
+europe.plot(ax=ax, color='lightgray')
+filtered.plot(ax=ax, color='orange', markersize=3)
+plt.title('Top 10% Potassium Values')
+plt.savefig('map_top_k.png')
+
+# 22. Plot points with electrical conductivity larger than 50 on Europe map
+import geopandas as gpd
+import matplotlib.pyplot as plt
+geo_df = gpd.read_file("geo_df.gpkg")
+europe = gpd.read_file("europe.gpkg")
+subset = geo_df[geo_df['EC'] > 50]
+fig, ax = plt.subplots(figsize=(10, 10))
+europe.plot(ax=ax, color='whitesmoke')
+subset.plot(ax=ax, color='blue', markersize=3)
+plt.title('EC > 50')
+plt.savefig('map_high_ec.png')
+
+# 23. Plot the sampling locations colored by detailed land cover category on Europe map
+import geopandas as gpd
+import matplotlib.pyplot as plt
+geo_df = gpd.read_file("geo_df.gpkg")
+europe = gpd.read_file("europe.gpkg")
+fig, ax = plt.subplots(figsize=(12, 10))
+europe.plot(ax=ax, color='white', edgecolor='black')
+geo_df.plot(ax=ax, column='LU1_Desc', legend=True, markersize=3)
+plt.title('Sampling Points by Land Use Description')
+plt.savefig('map_lu1_desc.png')
+
+# 24. Plot the heatmap of ph values in water on Europe map
+import geopandas as gpd
+import matplotlib.pyplot as plt
+geo_df = gpd.read_file("geo_df.gpkg")
+europe = gpd.read_file("europe.gpkg")
+fig, ax = plt.subplots(figsize=(12, 10))
+europe.plot(ax=ax, color='lightgrey')
+geo_df.plot(ax=ax, column='pH_CaCl2', cmap='hot', legend=True, markersize=4)
+plt.title('Heatmap of pH_CaCl2')
+plt.savefig('map_ph_heatmap.png')
+
+# 25. Plot all nitrogen outlier (N > 4)
+import geopandas as gpd
+import matplotlib.pyplot as plt
+geo_df = gpd.read_file("geo_df.gpkg")
+europe = gpd.read_file("europe.gpkg")
+outliers = geo_df[geo_df['N'] > 4]
+fig, ax = plt.subplots(figsize=(10, 10))
+europe.plot(ax=ax, color='white')
+outliers.plot(ax=ax, color='purple', markersize=4)
+plt.title('Nitrogen Outliers (N > 4)')
+plt.savefig('map_n_outliers.png')
+
+# 26. Plot all the points where organic carbon content is available
+import geopandas as gpd
+import matplotlib.pyplot as plt
+geo_df = gpd.read_file("geo_df.gpkg")
+europe = gpd.read_file("europe.gpkg")
+available = geo_df[geo_df['OC (20-30 cm)'].notna()]
+fig, ax = plt.subplots(figsize=(10, 10))
+europe.plot(ax=ax, color='white')
+available.plot(ax=ax, color='black', markersize=2)
+plt.title('Samples with OC (20-30 cm) Data')
+plt.savefig('map_oc2030_available.png')
+
+# 27. Plot the grassland vs cropland locations on Europe map
+import geopandas as gpd
+import matplotlib.pyplot as plt
+geo_df = gpd.read_file("geo_df.gpkg")
+europe = gpd.read_file("europe.gpkg")
+fig, ax = plt.subplots(figsize=(10, 10))
+europe.plot(ax=ax, color='lightgray')
+geo_df[geo_df['LC0_Desc'] == 'Grassland'].plot(ax=ax, color='green', markersize=2, label='Grassland')
+geo_df[geo_df['LC0_Desc'] == 'Cropland'].plot(ax=ax, color='goldenrod', markersize=2, label='Cropland')
+plt.legend()
+plt.title('Grassland vs Cropland Points')
+plt.savefig('map_grass_crop.png')
+
+# 28. Plot the spruce vs pine dominated forests on Europe map
+import geopandas as gpd
+import matplotlib.pyplot as plt
+geo_df = gpd.read_file("geo_df.gpkg")
+europe = gpd.read_file("europe.gpkg")
+fig, ax = plt.subplots(figsize=(10, 10))
+europe.plot(ax=ax, color='white')
+geo_df[geo_df['LC1_Desc'].str.contains('Spruce')].plot(ax=ax, color='darkgreen', markersize=3, label='Spruce')
+geo_df[geo_df['LC1_Desc'].str.contains('Pine')].plot(ax=ax, color='saddlebrown', markersize=3, label='Pine')
+plt.legend()
+plt.title('Spruce vs Pine Forest')
+plt.savefig('map_forest_types.png')
+
+# 29. Plot the points where the carbon to nitrogen ratio is greater than 10
+import geopandas as gpd
+import matplotlib.pyplot as plt
+geo_df = gpd.read_file("geo_df.gpkg")
+europe = gpd.read_file("europe.gpkg")
+geo_df = geo_df.copy()
+geo_df['C_N'] = geo_df['OC'] / geo_df['N']
+high_ratio = geo_df[geo_df['C_N'] > 10]
+fig, ax = plt.subplots(figsize=(10, 10))
+europe.plot(ax=ax, color='lightgray')
+high_ratio.plot(ax=ax, color='black', markersize=3)
+plt.title('C/N Ratio > 10')
+plt.savefig('map_cn_ratio.png')
+
+# 30. Make 3 clusters of coordinates (make 3 clusters) and plot them on Europe map
+import geopandas as gpd
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+geo_df = gpd.read_file("geo_df.gpkg")
+europe = gpd.read_file("europe.gpkg")
+geo_df = geo_df.copy()
+geo_df['cluster'] = KMeans(n_clusters=3).fit_predict(geo_df[['TH_LAT', 'TH_LONG']])
+fig, ax = plt.subplots(figsize=(10, 10))
+europe.plot(ax=ax, color='white', edgecolor='black')
+geo_df.plot(ax=ax, column='cluster', cmap='Set1', markersize=4, legend=True)
+plt.title('KMeans Clustering (3 groups)')
+plt.savefig('map_clusters.png')

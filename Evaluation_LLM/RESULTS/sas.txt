@@ -1,0 +1,109 @@
+>>> Starting fast SAS evaluation
+
+=== SAS Evaluation for Model: qwen_bby_5 ===
+→ Evaluating example 16... ✅ 100.0%
+→ Evaluating example 17... ✅ 100.0%
+→ Evaluating example 18... ✅ 100.0%
+→ Evaluating example 19... ✅ 100.0%
+→ Evaluating example 20... ✅ 100.0%
+→ Evaluating example 21... ✅ 100.0%
+→ Evaluating example 24... ✅ 100.0%
+→ Evaluating example 29... ✅ 100.0%
+→ Evaluating example 31... ❌ Missing
+→ Evaluating example 32... ✅ 100.0%
+→ Evaluating example 33... ❌ Missing
+→ Evaluating example 34... ❌ Missing
+→ Evaluating example 35... ❌ Missing
+→ Evaluating example 36... ❌ Missing
+→ Evaluating example 37... ✅ 100.0%
+→ Evaluating example 38... ❌ Missing
+→ Evaluating example 39... ✅ 100.0%
+→ Evaluating example 40... ❌ Missing
+→ Evaluating example 41... ✅ 100.0%
+
+Saved: qwen_bby_5_sas_scores.csv
+Generated: 12/19
+Missing: [31, 33, 34, 35, 36, 38, 40]
+Unpenalized SAS: 100.0%
+Penalized SAS: 63.16%
+
+=== SAS Evaluation for Model: plain_qwen_full ===
+→ Evaluating example 16... 💥 Error: Failed to read GeoJSON data
+→ Evaluating example 17... 💥 Error: Failed to read GeoJSON data
+→ Evaluating example 18... 💥 Error: Failed to read GeoJSON data
+→ Evaluating example 19... 💥 Error: Failed to read GeoJSON data
+→ Evaluating example 20... ✅ 100.0%
+→ Evaluating example 21... 💥 Error: Failed to read GeoJSON data
+→ Evaluating example 24... 💥 Error: Failed to read GeoJSON data
+→ Evaluating example 29... ❌ Missing
+→ Evaluating example 31... ✅ 0.15%
+→ Evaluating example 32... ✅ 0.32%
+→ Evaluating example 33... ✅ 19.51%
+→ Evaluating example 34... ✅ 0.14%
+→ Evaluating example 35... ❌ Missing
+→ Evaluating example 36... ✅ 3.55%
+→ Evaluating example 37... ❌ Missing
+→ Evaluating example 38... ❌ Missing
+→ Evaluating example 39... ❌ Missing
+→ Evaluating example 40... ❌ Missing
+→ Evaluating example 41... 💥 Error: Failed to read GeoJSON data
+
+Saved: plain_qwen_full_sas_scores.csv
+Generated: 6/19
+Missing: [16, 17, 18, 19, 21, 24, 29, 35, 37, 38, 39, 40, 41]
+Unpenalized SAS: 20.61%
+Penalized SAS: 6.51%
+
+=== SAS Evaluation for Model: qwen_bbn_4 ===
+→ Evaluating example 16... ✅ 100.0%
+→ Evaluating example 17... ✅ 100.0%
+→ Evaluating example 18... ✅ 100.0%
+→ Evaluating example 19... ✅ 100.0%
+→ Evaluating example 20... ✅ 100.0%
+→ Evaluating example 21... ✅ 100.0%
+→ Evaluating example 24... ✅ 100.0%
+→ Evaluating example 29... ❌ Missing
+→ Evaluating example 31... ✅ 100.0%
+→ Evaluating example 32... ✅ 100.0%
+→ Evaluating example 33... ✅ 19.51%
+→ Evaluating example 34... ✅ 100.0%
+→ Evaluating example 35... ✅ 100.0%
+→ Evaluating example 36... ❌ Missing
+→ Evaluating example 37... ✅ 100.0%
+→ Evaluating example 38... ✅ 100.0%
+→ Evaluating example 39... ✅ 100.0%
+→ Evaluating example 40... ✅ 4.1%
+→ Evaluating example 41... ✅ 100.0%
+
+Saved: qwen_bbn_4_sas_scores.csv
+Generated: 17/19
+Missing: [29, 36]
+Unpenalized SAS: 89.62%
+Penalized SAS: 80.19%
+
+=== SAS Evaluation for Model: qwen_norag_ft_13 ===
+→ Evaluating example 16... ✅ 100.0%
+→ Evaluating example 17... ✅ 100.0%
+→ Evaluating example 18... ✅ 100.0%
+→ Evaluating example 19... ✅ 100.0%
+→ Evaluating example 20... ❌ Missing
+→ Evaluating example 21... ❌ Missing
+→ Evaluating example 24... ✅ 100.0%
+→ Evaluating example 29... ❌ Missing
+→ Evaluating example 31... ❌ Missing
+→ Evaluating example 32... ✅ 0.32%
+→ Evaluating example 33... ✅ 19.51%
+→ Evaluating example 34... ✅ 0.14%
+→ Evaluating example 35... ✅ 0.07%
+→ Evaluating example 36... ✅ 3.55%
+→ Evaluating example 37... ❌ Missing
+→ Evaluating example 38... ❌ Missing
+→ Evaluating example 39... ❌ Missing
+→ Evaluating example 40... ❌ Missing
+→ Evaluating example 41... ❌ Missing
+
+Saved: qwen_norag_ft_13_sas_scores.csv
+Generated: 10/19
+Missing: [20, 21, 29, 31, 37, 38, 39, 40, 41]
+Unpenalized SAS: 52.36%
+Penalized SAS: 27.56%

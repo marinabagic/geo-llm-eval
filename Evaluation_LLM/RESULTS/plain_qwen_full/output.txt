@@ -1,0 +1,328 @@
+=== CODE GENERATION ===
+
+=== Processing Test Example 1/41 ===
+Question: Which general land cover class has the highest average soil pH in water?
+Saved to generated/generated_1.py
+
+=== Processing Test Example 2/41 ===
+Question: Plot average organic carbon content (0-20 cm) by general land cover type
+Saved to generated/generated_2.py
+
+=== Processing Test Example 3/41 ===
+Question: Compare nitrogen content between Austria and France using a t-test
+Saved to generated/generated_3.py
+
+=== Processing Test Example 4/41 ===
+Question: Plot histogram of phosphorus content with KDE
+Saved to generated/generated_4.py
+
+=== Processing Test Example 5/41 ===
+Question: Print average pH in calcium chloride for southern European countries
+Saved to generated/generated_5.py
+
+=== Processing Test Example 6/41 ===
+Question: Plot correlation matrix heatmap
+Saved to generated/generated_6.py
+
+=== Processing Test Example 7/41 ===
+Question: Print out top 3 regions (NUTS_2) with highest potassium
+Saved to generated/generated_7.py
+
+=== Processing Test Example 8/41 ===
+Question: Make boxplot of EC grouped by land use class
+Saved to generated/generated_8.py
+
+=== Processing Test Example 9/41 ===
+Question: Using ANOVA calcuate if organic carbon content differs by land cover
+Saved to generated/generated_9.py
+
+=== Processing Test Example 10/41 ===
+Question: Plot regression plot of pH in water vs potassium
+Saved to generated/generated_10.py
+
+=== Processing Test Example 11/41 ===
+Question: Calculate Z-score outliers for EC
+You seem to be using the pipelines sequentially on GPU. In order to maximize efficiency please use a dataset
+Saved to generated/generated_11.py
+
+=== Processing Test Example 12/41 ===
+Question: Calcuate confidence interval for mean organic carbon
+Saved to generated/generated_12.py
+
+=== Processing Test Example 13/41 ===
+Question: Plot histogram of carbonate content (0-20cm)
+Saved to generated/generated_13.py
+
+=== Processing Test Example 14/41 ===
+Question: Calcuate average nitrogen per general land cover class
+Saved to generated/generated_14.py
+
+=== Processing Test Example 15/41 ===
+Question: Plot sampling distribution of mean pH in water (n=30, 1000 samples)
+Saved to generated/generated_15.py
+
+=== Processing Test Example 16/41 ===
+Question: Plot all soil sample points on Europe map
+Saved to generated/generated_16.py
+
+=== Processing Test Example 17/41 ===
+Question: Plot only points with pH in CaCl2 > 6 on Europe map
+Saved to generated/generated_17.py
+
+=== Processing Test Example 18/41 ===
+Question: Plot all Woodland areas on Europe map
+Saved to generated/generated_18.py
+
+=== Processing Test Example 19/41 ===
+Question: Plot all Woodland areas with ph in water < 6 on Europe map
+Saved to generated/generated_19.py
+
+=== Processing Test Example 20/41 ===
+Question: Plot all points where organic carbon content > 20 in Grassland or Woodland
+Saved to generated/generated_20.py
+
+=== Processing Test Example 21/41 ===
+Question: Plot top 10% of potassium values on Europe map
+Saved to generated/generated_21.py
+
+=== Processing Test Example 22/41 ===
+Question: Plot points with electrical conductivity larger than 50 on Europe map
+Saved to generated/generated_22.py
+
+=== Processing Test Example 23/41 ===
+Question: Plot the sampling locations colored by detailed land cover category on Europe map
+Saved to generated/generated_23.py
+
+=== Processing Test Example 24/41 ===
+Question: Plot the heatmap of ph values in water on Europe map
+Saved to generated/generated_24.py
+
+=== Processing Test Example 25/41 ===
+Question: Plot all nitrogen outlier (N > 4)
+Saved to generated/generated_25.py
+
+=== Processing Test Example 26/41 ===
+Question: Plot all the points where organic carbon content is available
+Saved to generated/generated_26.py
+
+=== Processing Test Example 27/41 ===
+Question: Plot the grassland vs cropland locations on Europe map
+Saved to generated/generated_27.py
+
+=== Processing Test Example 28/41 ===
+Question: Plot the spruce vs pine dominated forests on Europe map
+Saved to generated/generated_28.py
+
+=== Processing Test Example 29/41 ===
+Question: Plot the points where the carbon to nitrogen ratio is greater than 10
+Saved to generated/generated_29.py
+
+=== Processing Test Example 30/41 ===
+Question: Make 3 clusters of coordinates (make 3 clusters) and plot them on Europe map
+Saved to generated/generated_30.py
+
+=== Processing Test Example 31/41 ===
+Question: Plot all points in Croatia where 'OC' is below 20.
+Saved to generated/generated_31.py
+
+=== Processing Test Example 32/41 ===
+Question: Plot all points in Austria where 'pH_CaCl2' > 5 and LC0_Desc is 'Woodland'.
+Saved to generated/generated_32.py
+
+=== Processing Test Example 33/41 ===
+Question: Highlight all locations sampled in July 2018, using different colors based on LC0_Desc.
+Saved to generated/generated_33.py
+
+=== Processing Test Example 34/41 ===
+Question: Plot all points in Slovakia where 'K' is above its 85th percentile.
+Saved to generated/generated_34.py
+
+=== Processing Test Example 35/41 ===
+Question: Create a map of Belgium highlighting points where 'pH_H2O' is in the bottom 10 percentile.
+Saved to generated/generated_35.py
+
+=== Processing Test Example 36/41 ===
+Question: Plot all points in Poland where 'OC' > median and color them by LU_DESC.
+Saved to generated/generated_36.py
+
+=== Processing Test Example 37/41 ===
+Question: Show how land cover categories vary across France on a map.
+Saved to generated/generated_37.py
+
+=== Processing Test Example 38/41 ===
+Question: Display all points located within 100 km of London and color them by LC0_Desc.
+Saved to generated/generated_38.py
+
+=== Processing Test Example 39/41 ===
+Question: Perform KMeans clustering on OC and K values and plot the clusters in Spain.
+Saved to generated/generated_39.py
+
+=== Processing Test Example 40/41 ===
+Question: Compute the average 'pH_H2O' per NUTS2 region in Germany and show it on a choropleth map.
+Saved to generated/generated_40.py
+
+=== Processing Test Example 41/41 ===
+Question: Create a map of Italy where each point is colored by its LC0_Desc category.
+Saved to generated/generated_41.py
+
+
+=== RENAMING & EXECUTING ===
+
+Executing generated_1.py (plot → plots/plot1.png)
+Execution failed: 'NUTS_0'
+
+Executing generated_2.py (plot → plots/plot2.png)
+Renamed plot2.png → plot2.png
+Execution successful.
+
+Executing generated_3.py (plot → plots/plot3.png)
+T-statistic: 16.03586385662198, P-value: 1.0339087114940987e-55
+Renamed plot3.png → plot3.png
+Execution successful.
+
+Executing generated_4.py (plot → plots/plot4.png)
+Execution failed: 'NUTS_0'
+
+Executing generated_5.py (plot → plots/plot5.png)
+Average pH in calcium chloride for southern European countries: 5.680895355344153
+Renamed plot5.png → plot5.png
+Execution successful.
+
+Executing generated_6.py (plot → plots/plot6.png)
+Execution failed: 'NUTS_0'
+
+Executing generated_7.py (plot → plots/plot7.png)
+Execution failed: 'NUTS_0'
+
+Executing generated_8.py (plot → plots/plot8.png)
+Execution failed: 'NUTS_0'
+
+Executing generated_9.py (plot → plots/plot9.png)
+F_onewayResult(statistic=nan, pvalue=nan)
+Renamed plot9.png → plot9.png
+Execution successful.
+
+Executing generated_10.py (plot → plots/plot10.png)
+Execution failed: scatter() got multiple values for argument 'x'
+
+Executing generated_11.py (plot → plots/plot11.png)
+Execution successful.
+
+Executing generated_12.py (plot → plots/plot12.png)
+Mean Organic Carbon: 47.52502765923819
+Confidence Interval: (46.36411177907735, 48.685943539399034)
+Execution successful.
+
+Executing generated_13.py (plot → plots/plot13.png)
+Execution failed: 'NUTS_0'
+
+Executing generated_14.py (plot → plots/plot14.png)
+Execution failed: 'NUTS_0'
+
+Executing generated_15.py (plot → plots/plot15.png)
+Execution failed: 'NUTS_0'
+
+Executing generated_16.py (plot → plots/plot16.png)
+Renamed plot16.png → plot16.png
+Execution successful.
+
+Executing generated_17.py (plot → plots/plot17.png)
+Renamed plot17.png → plot17.png
+Execution successful.
+
+Executing generated_18.py (plot → plots/plot18.png)
+Renamed plot18.png → plot18.png
+Execution successful.
+
+Executing generated_19.py (plot → plots/plot19.png)
+Renamed plot19.png → plot19.png
+Execution successful.
+
+Executing generated_20.py (plot → plots/plot20.png)
+<string>:21: UserWarning: The GeoDataFrame you are attempting to plot is empty. Nothing has been displayed.
+Renamed plot20.png → plot20.png
+Execution successful.
+
+Executing generated_21.py (plot → plots/plot21.png)
+Renamed plot21.png → plot21.png
+Execution successful.
+
+Executing generated_22.py (plot → plots/plot22.png)
+Renamed plot22.png → plot22.png
+Execution successful.
+
+Executing generated_23.py (plot → plots/plot23.png)
+Renamed plot23.png → plot23.png
+Execution successful.
+
+Executing generated_24.py (plot → plots/plot24.png)
+Renamed plot24.png → plot24.png
+Execution successful.
+
+Executing generated_25.py (plot → plots/plot25.png)
+Renamed plot25.png → plot25.png
+Execution successful.
+
+Executing generated_26.py (plot → plots/plot26.png)
+<string>:14: RuntimeWarning: More than 20 figures have been opened. Figures created through the pyplot interface (`matplotlib.pyplot.figure`) are retained until explicitly closed and may consume too much memory. (To control this warning, see the rcParam `figure.max_open_warning`). Consider using `matplotlib.pyplot.close()`.
+Renamed plot26.png → plot26.png
+Execution successful.
+
+Executing generated_27.py (plot → plots/plot27.png)
+Execution failed: 'IsInEurope'
+
+Executing generated_28.py (plot → plots/plot28.png)
+Renamed plot28.png → plot28.png
+Execution successful.
+
+Executing generated_29.py (plot → plots/plot29.png)
+Execution failed: unsupported operand type(s) for /: 'str' and 'float'
+
+Executing generated_30.py (plot → plots/plot30.png)
+Execution failed: 'NUTS_0'
+
+Executing generated_31.py (plot → plots/plot31.png)
+Renamed plot31.png → plot31.png
+Execution successful.
+
+Executing generated_32.py (plot → plots/plot32.png)
+Renamed plot32.png → plot32.png
+Execution successful.
+
+Executing generated_33.py (plot → plots/plot33.png)
+Renamed plot33.png → plot33.png
+Execution successful.
+
+Executing generated_34.py (plot → plots/plot34.png)
+Renamed plot34.png → plot34.png
+Execution successful.
+
+Executing generated_35.py (plot → plots/plot35.png)
+Execution failed: 'NAME'
+
+Executing generated_36.py (plot → plots/plot36.png)
+Renamed plot36.png → plot36.png
+Execution successful.
+
+Executing generated_37.py (plot → plots/plot37.png)
+Execution failed: aspect must be finite and positive 
+
+Executing generated_38.py (plot → plots/plot38.png)
+Execution failed: name 'plt' is not defined
+
+Executing generated_39.py (plot → plots/plot39.png)
+Execution failed: Input X contains NaN.
+KMeans does not accept missing values encoded as NaN natively. For supervised learning, you might want to consider sklearn.ensemble.HistGradientBoostingClassifier and Regressor which accept missing values encoded as NaNs natively. Alternatively, it is possible to preprocess the data, for instance by using an imputer transformer in a pipeline or drop samples with missing values. See https://scikit-learn.org/stable/modules/impute.html You can find a list of all estimators that handle NaN values at the following page: https://scikit-learn.org/stable/modules/impute.html#estimators-that-handle-nan-values
+
+Executing generated_40.py (plot → plots/plot40.png)
+<string>:14: UserWarning: CRS mismatch between the CRS of left geometries and the CRS of right geometries.
+Use `to_crs()` to reproject one of the input geometries to match the CRS of the other.
+
+Left CRS: EPSG:3035
+Right CRS: EPSG:4326
+
+Execution failed: 'NUTS_2'
+
+Executing generated_41.py (plot → plots/plot41.png)
+Renamed plot41.png → plot41.png
+Execution successful.

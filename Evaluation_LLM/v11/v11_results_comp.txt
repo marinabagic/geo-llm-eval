@@ -1,0 +1,551 @@
+=== Test Case 1: Show which general land cover class has the highest average soil pH in water. ===
+
+ne daje kod, kaze woodland ali mislim da je odgovor water. 
+
+=== Test Case 2: Plot the average organic carbon content (0–20 cm) by general land cover type. ===
+
+Traceback (most recent call last):
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'OC_0_20'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/lustre/home/jslehan/GeospatialVisualization/autonomous/JuraGeospatial/tester.py", line 7, in <module>
+    df["OC_0_20"] = pd.to_numeric(df["OC_0_20"], errors="coerce")
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/frame.py", line 4102, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'OC_0_20'
+
+=== Test Case 3: Compare nitrogen content between Austria and France using a t-test. ===
+
+   Country        OC
+0  Austria  8.067281
+1   France  3.306827
+
+#dok "tocni kod" baca gresku TypeError: unsupported operand type(s) for /: 'str' and 'int'
+
+=== Test Case 4: Display a histogram of phosphorus content with a KDE overlay. ===
+
+Traceback (most recent call last):
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'PHOS'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/lustre/home/jslehan/GeospatialVisualization/autonomous/JuraGeospatial/tester.py", line 6, in <module>
+    df["PHOS"] = pd.to_numeric(df["PHOS"], errors="coerce")
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/frame.py", line 4102, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'PHOS'
+
+=== Test Case 5: Print the average pH in calcium chloride for southern European countries. ===
+
+nepotpun kod
+
+=== Test Case 6: Create a heatmap showing the correlation matrix of all numeric columns. ===
+
+Traceback (most recent call last):
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'COUNTRY'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/lustre/home/jslehan/GeospatialVisualization/autonomous/JuraGeospatial/tester.py", line 16, in <module>
+    for country in gdf["COUNTRY"].unique():
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/geopandas/geodataframe.py", line 1750, in __getitem__
+    result = super().__getitem__(key)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/frame.py", line 4102, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'COUNTRY'
+
+=== Test Case 7: Print the top 3 regions (NUTS_2) with the highest average potassium content. ===
+
+generira sliku ali skroz krivo
+
+=== Test Case 8: Plot a boxplot of electrical conductivity (EC) grouped by land use class. ===
+
+Traceback (most recent call last):
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'bbox_minx'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/lustre/home/jslehan/GeospatialVisualization/autonomous/JuraGeospatial/tester.py", line 16, in <module>
+    europe = europe[(europe["bbox_minx"] < bbox[2]) & (europe["bbox_maxx"] > bbox[0]) & (europe["bbox_miny"] < bbox[3]) & (europe["bbox_maxy"] > bbox[1])]
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/geopandas/geodataframe.py", line 1750, in __getitem__
+    result = super().__getitem__(key)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/frame.py", line 4102, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'bbox_minx'
+
+=== Test Case 9: Use ANOVA to test if organic carbon content differs across land cover types. ===
+
+Traceback (most recent call last):
+  File "/lustre/home/jslehan/GeospatialVisualization/autonomous/JuraGeospatial/tester.py", line 8, in <module>
+    df["OC"] = df["OC"].str.replace(",", ".").astype(float)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/generic.py", line 6643, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/internals/managers.py", line 430, in astype
+    return self.apply(
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/internals/managers.py", line 363, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/internals/blocks.py", line 758, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/dtypes/astype.py", line 237, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/dtypes/astype.py", line 182, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/dtypes/astype.py", line 133, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: could not convert string to float: '< LOD'
+
+=== Test Case 10: Plot a regression of pH in water vs. potassium. ===
+
+tocno
+
+generira sliku koja cak izgleda tocno, a tocan kod baca gresku
+
+=== Test Case 11: Identify and print Z-score outliers for electrical conductivity (EC). ===
+
+skroz kriva slika
+
+=== Test Case 12: Calculate the 95% confidence interval for the mean organic carbon content. ===
+krivo
+
+The 95% confidence interval for the mean organic carbon content is approximately (13.28, 14.07).
+
+=== Test Case 13: Display a histogram of carbonate content (0–20 cm). ===
+
+slika europe ne znam bas da je to histogram
+
+=== Test Case 14: Print average nitrogen content for each general land cover class. ===
+
+Traceback (most recent call last):
+  File "/lustre/home/jslehan/GeospatialVisualization/autonomous/JuraGeospatial/tester.py", line 9, in <module>
+    df["LandCover"] = df.where(df["LandCover"] != "Unknown", df["LC0_Desc"])
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/generic.py", line 10984, in where
+    return self._where(cond, other, inplace, axis, level)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/generic.py", line 10692, in _where
+    other = self.align(
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/generic.py", line 10447, in align
+    left, _right, join_index = self._align_series(
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/generic.py", line 10553, in _align_series
+    raise ValueError("Must specify axis=0 or 1")
+ValueError: Must specify axis=0 or 1
+
+=== Test Case 15: Plot the sampling distribution of mean pH in water from 1000 samples of size 30. ===
+
+kriva slika
+
+=== Test Case 16: Map all soil sample points across Europe. ===
+
+tocno
+
+=== Test Case 17: Show all points with pH_CaCl2 greater than 6 on a Europe map. ===
+
+tocno
+
+=== Test Case 18: Plot all woodland areas across Europe. ===
+
+tocno
+
+=== Test Case 19: Highlight woodland areas with pH_H2O below 6 on a Europe map. ===
+
+tocno
+
+=== Test Case 20: Map points in Grassland or Woodland where organic carbon content is greater than 20. ===
+
+Traceback (most recent call last):
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/ops/array_ops.py", line 362, in na_logical_op
+    result = op(x, y)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/roperator.py", line 58, in ror_
+    return operator.or_(right, left)
+TypeError: unsupported operand type(s) for |: 'str' and 'str'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/ops/array_ops.py", line 376, in na_logical_op
+    result = libops.scalar_binop(x, y, op)
+  File "ops.pyx", line 210, in pandas._libs.ops.scalar_binop
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/roperator.py", line 58, in ror_
+    return operator.or_(right, left)
+TypeError: unsupported operand type(s) for |: 'bool' and 'str'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/lustre/home/jslehan/GeospatialVisualization/autonomous/JuraGeospatial/tester.py", line 7, in <module>
+    df = df[(df["LC1_Desc"] == "Grassland" | df["LC1_Desc"] == "Woodland") & (df["OC"] > 20)]
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/ops/common.py", line 76, in new_method
+    return method(self, other)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/arraylike.py", line 82, in __ror__
+    return self._logical_method(other, roperator.ror_)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/series.py", line 6130, in _logical_method
+    res_values = ops.logical_op(lvalues, rvalues, op)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/ops/array_ops.py", line 454, in logical_op
+    res_values = na_logical_op(lvalues, rvalues, op)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/ops/array_ops.py", line 385, in na_logical_op
+    raise TypeError(
+TypeError: Cannot perform 'ror_' with a dtyped [object] array and scalar of type [bool]
+
+=== Test Case 21: Plot the top 10 percent of potassium values across Europe. ===
+
+Traceback (most recent call last):
+  File "/lustre/home/jslehan/GeospatialVisualization/autonomous/JuraGeospatial/tester.py", line 6, in <module>
+    threshold = df["K"].quantile(0.9)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/series.py", line 2887, in quantile
+    result = df.quantile(q=q, interpolation=interpolation, numeric_only=False)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/frame.py", line 12146, in quantile
+    res_df = self.quantile(
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/frame.py", line 12191, in quantile
+    res = data._mgr.quantile(qs=q, interpolation=interpolation)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/internals/managers.py", line 1548, in quantile
+    blocks = [
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/internals/managers.py", line 1549, in <listcomp>
+    blk.quantile(qs=qs, interpolation=interpolation) for blk in self.blocks
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/internals/blocks.py", line 1891, in quantile
+    result = quantile_compat(self.values, np.asarray(qs._values), interpolation)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/array_algos/quantile.py", line 39, in quantile_compat
+    return quantile_with_mask(values, mask, fill_value, qs, interpolation)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/array_algos/quantile.py", line 97, in quantile_with_mask
+    result = _nanpercentile(
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/array_algos/quantile.py", line 198, in _nanpercentile
+    result = [
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/array_algos/quantile.py", line 199, in <listcomp>
+    _nanpercentile_1d(val, m, qs, na_value, interpolation=interpolation)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/array_algos/quantile.py", line 145, in _nanpercentile_1d
+    return np.percentile(
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/numpy/lib/function_base.py", line 4283, in percentile
+    return _quantile_unchecked(
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/numpy/lib/function_base.py", line 4555, in _quantile_unchecked
+    return _ureduce(a,
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/numpy/lib/function_base.py", line 3823, in _ureduce
+    r = func(a, **kwargs)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/numpy/lib/function_base.py", line 4722, in _quantile_ureduce_func
+    result = _quantile(arr,
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/numpy/lib/function_base.py", line 4841, in _quantile
+    result = _lerp(previous,
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/numpy/lib/function_base.py", line 4655, in _lerp
+    diff_b_a = subtract(b, a)
+TypeError: unsupported operand type(s) for -: 'str' and 'str'
+
+=== Test Case 22: Display all points with electrical conductivity greater than 50 on a Europe map. ===
+
+tocno
+
+=== Test Case 23: Map all sampling points colored by detailed land use category (LU1_Desc). ===
+
+generira ali nije citko
+
+=== Test Case 24: Create a heatmap of pH_CaCl2 values across Europe. ===
+
+tocno
+
+=== Test Case 25: Highlight nitrogen outliers where N > 4 on a Europe map. ===
+
+Traceback (most recent call last):
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'THK'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/lustre/home/jslehan/GeospatialVisualization/autonomous/JuraGeospatial/tester.py", line 6, in <module>
+    df["THK"] = pd.to_numeric(df["THK"], errors="coerce")
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/frame.py", line 4102, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'THK'
+
+=== Test Case 26: Show all locations where organic carbon (20–30 cm) values are available. ===
+
+Traceback (most recent call last):
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'OC_20_30'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/lustre/home/jslehan/GeospatialVisualization/autonomous/JuraGeospatial/tester.py", line 6, in <module>
+    df["OC_20_30"] = pd.to_numeric(df["OC_20_30"], errors="coerce")
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/frame.py", line 4102, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'OC_20_30'
+
+=== Test Case 27: Map and compare grassland and cropland locations across Europe. ===
+
+nije cijela europa na slici
+
+=== Test Case 28: Display spruce- and pine-dominated forest locations on a Europe map. ===
+
+krivo
+
+=== Test Case 29: Highlight points where the carbon to nitrogen ratio is greater than 10. ===
+
+/lustre/home/jslehan/GeospatialVisualization/autonomous/JuraGeospatial/tester.py:14: UserWarning: Geometry is in a geographic CRS. Results from 'area' are likely incorrect. Use 'GeoSeries.to_crs()' to re-project geometries to a projected CRS before this operation.
+
+  europe["area"] = europe.geometry.area
+(.venv) [jslehan@x8000c2s5b0n0 JuraGeospatial]$ python tester.py
+Traceback (most recent call last):
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/ops/array_ops.py", line 218, in _na_arithmetic_op
+    result = func(left, right)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/computation/expressions.py", line 242, in evaluate
+    return _evaluate(op, op_str, a, b)  # type: ignore[misc]
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/computation/expressions.py", line 73, in _evaluate_standard
+    return op(a, b)
+TypeError: unsupported operand type(s) for /: 'str' and 'str'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/lustre/home/jslehan/GeospatialVisualization/autonomous/JuraGeospatial/tester.py", line 6, in <module>
+    df["OC_N"] = df["OC"] / df["N"]
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/ops/common.py", line 76, in new_method
+    return method(self, other)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/arraylike.py", line 210, in __truediv__
+    return self._arith_method(other, operator.truediv)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/series.py", line 6135, in _arith_method
+    return base.IndexOpsMixin._arith_method(self, other, op)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/base.py", line 1382, in _arith_method
+    result = ops.arithmetic_op(lvalues, rvalues, op)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/ops/array_ops.py", line 283, in arithmetic_op
+    res_values = _na_arithmetic_op(left, right, op)  # type: ignore[arg-type]
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/ops/array_ops.py", line 227, in _na_arithmetic_op
+    result = _masked_arith_op(left, right, op)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/ops/array_ops.py", line 163, in _masked_arith_op
+    result[mask] = op(xrav[mask], yrav[mask])
+TypeError: unsupported operand type(s) for /: 'str' and 'str'
+
+=== Test Case 30: Perform KMeans clustering to create 3 spatial clusters and map them across Europe. === OVO JE ZADNJI RAG
+
+tocno
+
+=== Test Case 31: Plot all the points that have pH_CaCl2 > 6. ===
+
+tocno
+
+=== Test Case 32: Plot all the points with LC0_Desc = 'Woodland' in Europe. ===
+
+tocno
+
+=== Test Case 33: Plot all the points with LC0_Desc = 'Woodland' and pH < 6 in Europe. ===
+
+Traceback (most recent call last):
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'pH'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/lustre/home/jslehan/GeospatialVisualization/autonomous/JuraGeospatial/tester.py", line 6, in <module>
+    df["pH"] = pd.to_numeric(df["pH"], errors="coerce")
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/frame.py", line 4102, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'pH'
+
+=== Test Case 34: Perform KMeans clustering on the TH_LAT and TH_LONG data to identify 3 clusters and plot them on a map. ===
+
+crta cijelu europu
+
+=== Test Case 35: Create a map with markers for all locations where 'K' is above its median value, in Europe. ===
+
+krivo
+
+=== Test Case 36: Generate a heatmap where each point is weighted by 'pH_CaCl2', in Europe. ===
+
+tocno
+
+=== Test Case 37: Create a map with markers for points where 'K' is in the top 10 percentile, in Europe. ===
+
+Traceback (most recent call last):
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'IS_IN_EU'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/lustre/home/jslehan/GeospatialVisualization/autonomous/JuraGeospatial/tester.py", line 9, in <module>
+    df = df[df["high_K"] & df["IS_IN_EU"].fillna(False)]
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/frame.py", line 4102, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'IS_IN_EU'
+
+=== Test Case 38: Plot the points with 'pH_H2O' > 5 in blue and 'pH_H2O' < 5 in red in Europe. ===
+
+tocno
+
+=== Test Case 39: Create a map displaying the distribution of soil types ('LC0_Desc') across Europe. ===
+
+crta cijeli svijet
+
+=== Test Case 40: Plot all the LC0_Desc = 'Grassland' and LC0_Desc = 'Woodland' points where 'OC' > 20. ===OVO JE ZADNJI FILIPOV
+
+crta ali nije citko
+
+=== Test Case 41: Show all forest areas (LC0_Desc = 'Woodland') where potassium (K) is in the top 10 percent and elevation is above 500 meters. ===
+=== Test Case 42: Plot all locations where soil has more than 20 percent organic carbon (OC) and the pH_H2O value is greater than 6. ===
+=== Test Case 43: Create a heatmap showing electrical conductivity (EC) values across Europe. ===
+=== Test Case 44: Display all points where the amount of Ox_Al is greater than Ox_Fe. ===3
+=== Test Case 45: Show all grassland locations (LC0_Desc = 'Grassland') where nitrogen (N) is above 2 and phosphorus (P) is not below detection limit. ===
+=== Test Case 46: Visualize all locations where CaCO3 is less than 1 and pH_CaCl2 is under 5.5  (possible acidified soils). ===
+=== Test Case 47: Compare woodland and cropland areas by showing their average pH_H2O values on a map. ===
+=== Test Case 48: Plot all grassland locations where phosphorus (P) is missing (marked as '< LOD'). ===
+=== Test Case 49: Highlight all locations sampled in July 2018, using different colors based on LC0_Desc. ===
+=== Test Case 50: Create a clustered map of soil types based on organic carbon (OC) and CaCO3 values. ===
+
+
+=== Test Case 51: Plot all points in Croatia where 'OC' is below 20. ===
+
+Traceback (most recent call last):
+  File "/lustre/home/jslehan/GeospatialVisualization/autonomous/JuraGeospatial/tester.py", line 6, in <module>
+    df = df[(df["Country"] == "Croatia") & (df["OC"] < 20)]
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/ops/common.py", line 76, in new_method
+    return method(self, other)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/arraylike.py", line 48, in __lt__
+    return self._cmp_method(other, operator.lt)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/series.py", line 6119, in _cmp_method
+    res_values = ops.comparison_op(lvalues, rvalues, op)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/ops/array_ops.py", line 344, in comparison_op
+    res_values = comp_method_OBJECT_ARRAY(op, lvalues, rvalues)
+  File "/lustre/home/jslehan/GeospatialVisualization/.venv/lib64/python3.9/site-packages/pandas/core/ops/array_ops.py", line 129, in comp_method_OBJECT_ARRAY
+    result = libops.scalar_compare(x.ravel(), y, op)
+  File "ops.pyx", line 107, in pandas._libs.ops.scalar_compare
+TypeError: '<' not supported between instances of 'str' and 'int'
+
+=== Test Case 52: Plot all points in Austria where 'pH_CaCl2' > 5 and LC0_Desc is 'Woodland'. ===
+
+nema slike
+
+=== Test Case 53: Plot all the points with LC0_Desc = Grassland in Europe. ===
+
+zumirano
+
+=== Test Case 54: Plot all points in Slovakia where 'K' is above its 85th percentile. ===
+
+nema slike
+
+=== Test Case 55: Create a map of Belgium highlighting points where 'pH_H2O' is in the bottom 10 percentile. ===
+
+nema slike
+
+=== Test Case 56: Plot all points in Poland where 'OC' > median and color them by LU_DESC. ===
+
+tocno
+
+=== Test Case 57: Show how land cover categories vary across France on a map. ===
+
+tocno
+
+=== Test Case 58: Perform KMeans clustering on TH_LAT and TH_LONG to identify 4 clusters in Europe and plot them. ===
+
+krivo
+
+=== Test Case 59: Perform KMeans clustering on OC and K values and plot the clusters in Spain. ===
+
+tocno
+
+=== Test Case 60: Plot the points in Europe with 'pH_H2O' > 4 in blue and others in red. ===
+
+tocno
+
+=== Test Case 61: Create a map of Italy where each point is colored by its LC0_Desc category. ===
+
+tocno
+
+=== Test Case 62: Plot all points in Europe where 'K' is below its median value. ===to je to
+
+krivo
+
+=== Test Case 63: Plot all points in Spain where 'OC' is above median and LU_DESC is 'Woodland'. ===
+=== Test Case 64: Map woodland locations in Finland where pH_CaCl2 < 5. ===
+=== Test Case 65: Visualize all locations in Norway where both 'K' and 'pH_H2O' are above their 70th percentile. ===
+=== Test Case 66: Highlight areas in Portugal where 'pH_H2O' is greater than 7 and the LU_DESC is 'Artificial land'. ===
+=== Test Case 67: Show all woodland areas in Finland with OC below its national median. ===
+=== Test Case 68: Map the points in Belgium where K is below the 25th percentile, colored by LU_DESC. ===
+=== Test Case 69: Visualize all locations in Ireland where 'pH_CaCl2' is greater than 6 and LC1_Desc is 'Cropland'. ===
+=== Test Case 70: Display a map of European points with OC above 40 and K above 250. ===
+=== Test Case 71: Plot all samples in the Netherlands where both pH_H2O and OC are above their medians. ===
+=== Test Case 72: Create a map showing TH_LAT vs. TH_LONG in Slovakia, colored by K value using a 'plasma' colormap. ===
+=== Test Case 73: Plot LUCAS points in Europe where LU_DESC is 'Woodland' and pH_H2O is less than 5.5. ===
+=== Test Case 74: Show pH_CaCl2 values across Norway, using a color gradient from blue to red. ===
+=== Test Case 75: Visualize all points in Romania with LC0_Desc = 'Shrubland' and OC below 25. ===
+=== Test Case 76: Map all European points where LC1_Desc is not 'Bare land' and K is in the top 20 percentile. ===
+=== Test Case 77: Display Polish points where LC1_Desc is 'Artificial land' and pH_H2O is above 6.5. ===
+=== Test Case 78: Show all land cover types in Estonia and color points by LC0_Desc. ===
+=== Test Case 79: Perform KMeans clustering using pH_H2O and OC on samples from Croatia and plot the result. ===
+=== Test Case 80: Plot all locations in Greece where LU_DESC is 'Permanent crops' and OC is above the European median. ===
+=== Test Case 81: Show all points in Hungary where 'CaCO3' is greater than 10 and 'LC0_Desc' is 'Cropland'. ===
+=== Test Case 82: Map the locations in Denmark where 'Ox_Fe' is above its median and 'LU1_Desc' contains 'Forest'. ===
+=== Test Case 83: Plot the distribution of 'Elev' across Austria, using a color gradient from light blue to dark red. ===
+=== Test Case 84: Display German samples where 'N' is above 0.3 and 'LC1_Desc' is not 'Artificial land'. ===
+=== Test Case 85: Visualize European points where 'CaCO3' is less than 5 and 'LU' is equal to 211. ===
+=== Test Case 86: Show all samples in Lithuania where 'TH_LAT' is greater than 55.5 and 'K' is below the 25th percentile. ===
+=== Test Case 87: Plot a map of Slovenia with points colored by 'pH_CaCl2', but only for 'Shrubland' in LC1_Desc. ===
+=== Test Case 88: Display points in Czech Republic where 'NUTS_2' starts with 'CZ' and 'OC' is greater than 30. ===
+=== Test Case 89: Map the samples in Belgium where 'Ox_Al' is above its 90th percentile, colored by 'LC0_Desc'. ===
+=== Test Case 90: Highlight all samples in Bulgaria with 'EC' greater than 0.6 and 'LU1_Desc' containing 'Crop'. ===
+=== Test Case 91: Plot all samples from France where 'LC0_Desc' is 'Cropland'. ===
+=== Test Case 92: Show the distribution of 'pH_H2O' in Germany using a color scale. ===
+=== Test Case 93: Display all points in Italy where 'OC' is greater than 20. ===
+=== Test Case 94: Plot LUCAS samples in Sweden with 'pH_CaCl2' less than 5.5. ===
+=== Test Case 95: Map all locations in Finland colored by 'LU1_Desc'. ===
